@@ -1,0 +1,1311 @@
+window.CAILUCKY_DEFAULT_SITE = {
+  "schemaVersion": 3,
+  "admin": {
+    "username": "showmii",
+    "passcode": "showmii-admin",
+    "hint": "管理員入口位於網站上方「管理員登入」。"
+  },
+  "brand": {
+    "name": "showmii",
+    "shortName": "showmii",
+    "tagline": "展示包與日常小物選品",
+    "mark": "s"
+  },
+  "theme": {
+    "background": "#fffaf7",
+    "surface": "#ffffff",
+    "text": "#241f1d",
+    "muted": "#75685f",
+    "primary": "#d95f82",
+    "accent": "#70b7aa",
+    "highlight": "#f4c76b",
+    "border": "#eaded7"
+  },
+  "layout": {
+    "desktopColumns": 4,
+    "tabletColumns": 3,
+    "mobileColumns": 2,
+    "productImageMode": "sprite",
+    "ribbonText": "FREE standard shipping over $29 USD",
+    "currency": "TWD",
+    "collectionTitle": "全部商品",
+    "collectionDescription": "精選展示包、收納配件與可愛小物。喜歡的款式可以直接截圖或複製商品名稱，透過下方平台詢問庫存與購買方式。",
+    "language": "zh-Hant"
+  },
+  "announcement": "showmii 新品與熱門款陸續上架，歡迎截圖商品詢問現貨與預訂。",
+  "hero": {
+    "eyebrow": "showmii selection",
+    "title": "把喜歡的收藏，好好展示出來",
+    "subtitle": "從透明展示包、收納配件到日常可愛小物，替你的收藏搭配乾淨、漂亮、好拍照的出門樣子。",
+    "cta": "逛全部商品"
+  },
+  "nav": [
+    {
+      "label": "首頁",
+      "target": "#home"
+    },
+    {
+      "label": "新品",
+      "target": "#products",
+      "category": "new"
+    },
+    {
+      "label": "熱門",
+      "target": "#products",
+      "category": "popular"
+    },
+    {
+      "label": "全部商品",
+      "target": "#products",
+      "category": "all"
+    },
+    {
+      "label": "購買方式",
+      "target": "#purchase-info"
+    },
+    {
+      "label": "聯絡",
+      "target": "#footer"
+    }
+  ],
+  "serviceBadges": [
+    {
+      "title": "精選展示款式",
+      "copy": "透明展示、收納分層與日常搭配感都替你先整理好。"
+    },
+    {
+      "title": "多平台詢問",
+      "copy": "可透過 Facebook、Instagram、LINE 等常用平台詢問。"
+    },
+    {
+      "title": "細節清楚好選",
+      "copy": "商品頁整理尺寸、特色與搭配重點，下單前更好確認。"
+    }
+  ],
+  "categories": [
+    {
+      "id": "all",
+      "name": "All Products",
+      "description": "Everything in the shop",
+      "order": 0
+    },
+    {
+      "id": "new",
+      "name": "New In",
+      "description": "Recently added items",
+      "order": 1
+    },
+    {
+      "id": "popular",
+      "name": "Popular",
+      "description": "Most requested styles",
+      "order": 2
+    },
+    {
+      "id": "ita-bags",
+      "name": "Ita Bags",
+      "description": "Window bags for pins and charms",
+      "order": 3
+    },
+    {
+      "id": "pouches",
+      "name": "Pouches",
+      "description": "Organizer pouches and panels",
+      "order": 4
+    },
+    {
+      "id": "dark",
+      "name": "Dark Color",
+      "description": "Black and graphite styles",
+      "order": 5
+    }
+  ],
+  "products": [
+    {
+      "id": "rose-heart-mini",
+      "name": "Rose Heart Mini Backpack",
+      "category": "ita-bags",
+      "tags": [
+        "new",
+        "popular"
+      ],
+      "price": 39.99,
+      "compareAt": 49.99,
+      "badge": "New",
+      "description": "Compact pastel backpack with a heart display window, soft ruffles, and side pockets for daily essentials.",
+      "details": [
+        "Heart display window",
+        "Adjustable straps",
+        "Side ribbon pockets"
+      ],
+      "stock": 18,
+      "order": 1,
+      "sprite": {
+        "col": 0,
+        "row": 0
+      },
+      "imageUrl": "",
+      "images": [],
+      "videoUrl": ""
+    },
+    {
+      "id": "mint-showcase-tote",
+      "name": "Mint Showcase Tote",
+      "category": "ita-bags",
+      "tags": [
+        "popular"
+      ],
+      "price": 42,
+      "compareAt": 0,
+      "badge": "Popular",
+      "description": "Roomy mint tote with a rectangular clear panel and charm loops for a neat display layout.",
+      "details": [
+        "Wide display panel",
+        "Top handles",
+        "Gold-tone hardware"
+      ],
+      "stock": 22,
+      "order": 2,
+      "sprite": {
+        "col": 1,
+        "row": 0
+      },
+      "imageUrl": "",
+      "images": [],
+      "videoUrl": ""
+    },
+    {
+      "id": "lavender-lace-crossbody",
+      "name": "Lavender Lace Crossbody",
+      "category": "ita-bags",
+      "tags": [
+        "new"
+      ],
+      "price": 35.5,
+      "compareAt": 44,
+      "badge": "Sale",
+      "description": "Slim shoulder bag with lace-up side trim and a clear display window for a polished collection look.",
+      "details": [
+        "Detachable strap",
+        "Ribbon trim",
+        "Flat inner display space"
+      ],
+      "stock": 13,
+      "order": 3,
+      "sprite": {
+        "col": 2,
+        "row": 0
+      },
+      "imageUrl": "",
+      "images": [],
+      "videoUrl": ""
+    },
+    {
+      "id": "cream-round-window",
+      "name": "Cream Round Window Bag",
+      "category": "ita-bags",
+      "tags": [
+        "popular"
+      ],
+      "price": 47.99,
+      "compareAt": 0,
+      "badge": "Limited",
+      "description": "Soft cream display bag with a round front window, bow detail, and structured compact body.",
+      "details": [
+        "Round viewing window",
+        "Structured base",
+        "Convertible carry"
+      ],
+      "stock": 9,
+      "order": 4,
+      "sprite": {
+        "col": 3,
+        "row": 0
+      },
+      "imageUrl": "",
+      "images": [],
+      "videoUrl": ""
+    },
+    {
+      "id": "black-heart-satchel",
+      "name": "Black Heart Satchel",
+      "category": "dark",
+      "tags": [
+        "popular"
+      ],
+      "price": 44.99,
+      "compareAt": 52,
+      "badge": "Best Seller",
+      "description": "Glossy black satchel with a heart-shaped display pocket and refined bow accent.",
+      "details": [
+        "Heart display pocket",
+        "Top handle",
+        "Crossbody strap"
+      ],
+      "stock": 16,
+      "order": 5,
+      "sprite": {
+        "col": 0,
+        "row": 1
+      },
+      "imageUrl": "",
+      "images": [],
+      "videoUrl": ""
+    },
+    {
+      "id": "coral-drawstring-pack",
+      "name": "Coral Drawstring Pack",
+      "category": "ita-bags",
+      "tags": [
+        "new"
+      ],
+      "price": 32,
+      "compareAt": 0,
+      "badge": "New",
+      "description": "Soft drawstring display pack with rounded front window and flexible daily capacity.",
+      "details": [
+        "Drawstring closure",
+        "Rounded window",
+        "Lightweight body"
+      ],
+      "stock": 20,
+      "order": 6,
+      "sprite": {
+        "col": 1,
+        "row": 1
+      },
+      "imageUrl": "",
+      "images": [],
+      "videoUrl": ""
+    },
+    {
+      "id": "sky-frame-crossbody",
+      "name": "Sky Frame Crossbody",
+      "category": "ita-bags",
+      "tags": [],
+      "price": 36.99,
+      "compareAt": 0,
+      "badge": "",
+      "description": "Small sky-blue crossbody with a clear rectangular window and clean frame stitching.",
+      "details": [
+        "Clear front panel",
+        "Adjustable strap",
+        "Compact profile"
+      ],
+      "stock": 27,
+      "order": 7,
+      "sprite": {
+        "col": 2,
+        "row": 1
+      },
+      "imageUrl": "",
+      "images": [],
+      "videoUrl": ""
+    },
+    {
+      "id": "graphite-grid-backpack",
+      "name": "Graphite Grid Backpack",
+      "category": "dark",
+      "tags": [
+        "popular"
+      ],
+      "price": 54,
+      "compareAt": 0,
+      "badge": "Popular",
+      "description": "Dark structured backpack with a grid panel for badges, charms, and small plush accessories.",
+      "details": [
+        "Grid display panel",
+        "Large storage area",
+        "Structured straps"
+      ],
+      "stock": 11,
+      "order": 8,
+      "sprite": {
+        "col": 3,
+        "row": 1
+      },
+      "imageUrl": "",
+      "images": [],
+      "videoUrl": ""
+    },
+    {
+      "id": "violet-heart-shoulder",
+      "name": "Violet Heart Shoulder Bag",
+      "category": "ita-bags",
+      "tags": [
+        "new"
+      ],
+      "price": 41.5,
+      "compareAt": 48,
+      "badge": "New",
+      "description": "Heart-window shoulder bag in violet with bow trim and a soft rounded silhouette.",
+      "details": [
+        "Heart window",
+        "Long shoulder strap",
+        "Decorative bow"
+      ],
+      "stock": 14,
+      "order": 9,
+      "sprite": {
+        "col": 0,
+        "row": 2
+      },
+      "imageUrl": "",
+      "images": [],
+      "videoUrl": ""
+    },
+    {
+      "id": "ivory-collector-case",
+      "name": "Ivory Collector Case",
+      "category": "pouches",
+      "tags": [
+        "popular"
+      ],
+      "price": 29.99,
+      "compareAt": 0,
+      "badge": "Popular",
+      "description": "Rectangular pouch for pins and charms with soft ivory trim and an easy-access display panel.",
+      "details": [
+        "Flat display area",
+        "Zip closure",
+        "Organizer friendly"
+      ],
+      "stock": 30,
+      "order": 10,
+      "sprite": {
+        "col": 1,
+        "row": 2
+      },
+      "imageUrl": "",
+      "images": [],
+      "videoUrl": ""
+    },
+    {
+      "id": "noir-cat-window",
+      "name": "Noir Cat Window Bag",
+      "category": "dark",
+      "tags": [
+        "new"
+      ],
+      "price": 45,
+      "compareAt": 0,
+      "badge": "New",
+      "description": "Black cat-ear display bag with a heart window and polished hardware details.",
+      "details": [
+        "Cat-ear silhouette",
+        "Heart display window",
+        "Crossbody ready"
+      ],
+      "stock": 10,
+      "order": 11,
+      "sprite": {
+        "col": 2,
+        "row": 2
+      },
+      "imageUrl": "",
+      "images": [],
+      "videoUrl": ""
+    },
+    {
+      "id": "pink-flat-panel",
+      "name": "Pink Flat Display Panel",
+      "category": "pouches",
+      "tags": [],
+      "price": 24,
+      "compareAt": 0,
+      "badge": "",
+      "description": "Flat display pouch with stitched rows for arranging badges, acrylic charms, and small accessories.",
+      "details": [
+        "Flat panel",
+        "Ribbon rows",
+        "Easy packing"
+      ],
+      "stock": 34,
+      "order": 12,
+      "sprite": {
+        "col": 3,
+        "row": 2
+      },
+      "imageUrl": "",
+      "images": [],
+      "videoUrl": ""
+    }
+  ],
+  "footer": {
+    "title": "聯繫 showmii",
+    "copy": "想詢問商品、現貨、預訂或合作，歡迎透過下方連結聯繫我們。",
+    "links": [
+      {
+        "label": "聯繫購買",
+        "target": "#purchase-info"
+      },
+      {
+        "label": "全部商品",
+        "target": "#products"
+      },
+      {
+        "label": "新品追蹤",
+        "target": "#products"
+      },
+      {
+        "label": "售後詢問",
+        "target": "#footer"
+      }
+    ]
+  },
+  "languages": [
+    {
+      "code": "zh-Hant",
+      "label": "繁體中文"
+    },
+    {
+      "code": "zh-Hans",
+      "label": "简体中文"
+    },
+    {
+      "code": "en",
+      "label": "English"
+    }
+  ],
+  "contact": {
+    "intro": "選擇你習慣的平台，把商品名稱或截圖傳給 showmii，我們會回覆庫存、金額與寄送方式。",
+    "channels": [
+      {
+        "id": "facebook",
+        "label": "Facebook",
+        "url": "https://www.facebook.com/",
+        "note": "前往粉專私訊"
+      },
+      {
+        "id": "instagram",
+        "label": "Instagram",
+        "url": "https://www.instagram.com/",
+        "note": "前往 Instagram 私訊"
+      },
+      {
+        "id": "line",
+        "label": "LINE",
+        "url": "https://line.me/R/ti/p/@yourlineid",
+        "note": "加入 LINE 詢問"
+      }
+    ]
+  },
+  "i18n": {
+    "zh-Hant": {
+      "ui": {
+        "languageLabel": "語言",
+        "currencyLabel": "幣別",
+        "search": "搜尋",
+        "searchProducts": "搜尋商品",
+        "account": "管理員登入",
+        "contactAdmin": "聯繫購買",
+        "categories": "分類",
+        "sort": "排序",
+        "featured": "精選",
+        "newest": "最新",
+        "priceAsc": "價格低到高",
+        "priceDesc": "價格高到低",
+        "alphabetical": "名稱排序",
+        "details": "詳情",
+        "contactToBuy": "聯繫購買",
+        "contactIntro": "選擇你習慣的平台，把商品名稱或截圖傳給 showmii。",
+        "selectedProductPrefix": "想詢問的商品：",
+        "noContact": "目前尚未放上聯絡方式，請稍後再試。",
+        "view": "查看",
+        "productDetails": "商品詳情",
+        "stockLine": "可詢問數量",
+        "outOfStock": "缺貨",
+        "noSearchStart": "開始輸入即可搜尋商品。",
+        "noResults": "找不到符合的商品。",
+        "resultUnit": "項商品於",
+        "languageSaved": "語言已更新。",
+        "contactSaved": "聯絡方式已儲存。",
+        "priceLow": "價格由低到高",
+        "priceHigh": "價格由高到低",
+        "addToCart": "加入詢問清單",
+        "cart": "詢問清單",
+        "cartEmpty": "尚未加入想詢問的商品。",
+        "checkoutDemo": "聯繫購買",
+        "moreImages": "更多圖片",
+        "videoLink": "影片連結",
+        "openVideo": "開啟影片",
+        "noMedia": "尚未新增更多圖片或影片。",
+        "adminLogin": "管理員登入"
+      },
+      "announcement": "showmii 新品與熱門款陸續上架，歡迎截圖商品詢問現貨與預訂。",
+      "brand": {
+        "shortName": "showmii",
+        "tagline": "展示包與日常小物選品"
+      },
+      "hero": {
+        "eyebrow": "showmii selection",
+        "title": "把喜歡的收藏，好好展示出來",
+        "subtitle": "從透明展示包、收納配件到日常可愛小物，替你的收藏搭配乾淨、漂亮、好拍照的出門樣子。",
+        "cta": "逛全部商品"
+      },
+      "layout": {
+        "collectionTitle": "全部商品",
+        "collectionDescription": "精選展示包、收納配件與可愛小物。喜歡的款式可以直接截圖或複製商品名稱，透過下方平台詢問庫存與購買方式。"
+      },
+      "nav": [
+        {
+          "label": "首頁"
+        },
+        {
+          "label": "新品"
+        },
+        {
+          "label": "熱門"
+        },
+        {
+          "label": "全部商品"
+        },
+        {
+          "label": "購買方式"
+        },
+        {
+          "label": "聯絡"
+        }
+      ],
+      "categories": {
+        "all": {
+          "name": "全部商品",
+          "description": "商店內所有商品"
+        },
+        "new": {
+          "name": "新品",
+          "description": "最近新增"
+        },
+        "popular": {
+          "name": "熱門",
+          "description": "最多人詢問"
+        },
+        "ita-bags": {
+          "name": "展示包",
+          "description": "適合徽章與吊飾展示"
+        },
+        "pouches": {
+          "name": "展示收納包",
+          "description": "收納包與展示板"
+        },
+        "dark": {
+          "name": "深色系",
+          "description": "黑色與石墨色款式"
+        }
+      },
+      "serviceBadges": [
+        {
+          "title": "精選展示款式",
+          "copy": "透明展示、收納分層與日常搭配感都替你先整理好。"
+        },
+        {
+          "title": "多平台詢問",
+          "copy": "可透過 Facebook、Instagram、LINE 等常用平台詢問。"
+        },
+        {
+          "title": "細節清楚好選",
+          "copy": "商品頁整理尺寸、特色與搭配重點，下單前更好確認。"
+        }
+      ],
+      "products": {
+        "rose-heart-mini": {
+          "name": "玫瑰愛心迷你後背包",
+          "description": "迷你粉色後背包，搭配愛心展示窗、柔軟荷葉邊與側邊收納口袋。",
+          "details": [
+            "愛心展示窗",
+            "可調式背帶",
+            "側邊蝴蝶結口袋"
+          ],
+          "badge": "新品"
+        },
+        "mint-showcase-tote": {
+          "name": "薄荷展示托特包",
+          "description": "大容量薄荷托特包，正面透明展示窗適合整齊排放徽章與吊飾。",
+          "details": [
+            "寬版展示窗",
+            "手提設計",
+            "金色五金"
+          ],
+          "badge": "熱門"
+        },
+        "lavender-lace-crossbody": {
+          "name": "薰衣草綁帶斜背包",
+          "description": "細長肩背包，側邊綁帶與透明展示窗讓收藏更有層次。",
+          "details": [
+            "可拆背帶",
+            "緞帶飾邊",
+            "平整展示空間"
+          ],
+          "badge": "優惠"
+        },
+        "cream-round-window": {
+          "name": "奶油圓窗展示包",
+          "description": "奶油色小包，圓形展示窗、蝴蝶結與挺版包身兼具可愛與質感。",
+          "details": [
+            "圓形展示窗",
+            "挺版底部",
+            "多種背法"
+          ],
+          "badge": "限量"
+        },
+        "black-heart-satchel": {
+          "name": "黑色愛心手提包",
+          "description": "黑色手提包搭配愛心透明口袋與精緻蝴蝶結，適合深色系收藏。",
+          "details": [
+            "愛心展示口袋",
+            "手提把",
+            "斜背帶"
+          ],
+          "badge": "熱賣"
+        },
+        "coral-drawstring-pack": {
+          "name": "珊瑚抽繩展示包",
+          "description": "柔軟抽繩款展示包，圓弧透明窗與輕量容量適合日常攜帶。",
+          "details": [
+            "抽繩開口",
+            "圓弧透明窗",
+            "輕量包身"
+          ],
+          "badge": "新品"
+        },
+        "sky-frame-crossbody": {
+          "name": "天空藍方窗斜背包",
+          "description": "小巧天空藍斜背包，方形透明窗與俐落車線適合簡潔展示。",
+          "details": [
+            "透明前窗",
+            "可調式背帶",
+            "小巧外型"
+          ],
+          "badge": ""
+        },
+        "graphite-grid-backpack": {
+          "name": "石墨黑格紋後背包",
+          "description": "深色挺版後背包，格紋展示面板可放徽章、吊飾與小娃。",
+          "details": [
+            "格紋展示面板",
+            "大容量收納",
+            "挺版背帶"
+          ],
+          "badge": "熱門"
+        },
+        "violet-heart-shoulder": {
+          "name": "紫羅蘭愛心肩背包",
+          "description": "紫色愛心展示窗肩背包，搭配蝴蝶結與圓潤包型。",
+          "details": [
+            "愛心透明窗",
+            "長肩背帶",
+            "裝飾蝴蝶結"
+          ],
+          "badge": "新品"
+        },
+        "ivory-collector-case": {
+          "name": "象牙白收藏展示包",
+          "description": "矩形展示包，可收納徽章與吊飾，柔和象牙白飾邊方便整理。",
+          "details": [
+            "平整展示面",
+            "拉鍊開口",
+            "適合整理收藏"
+          ],
+          "badge": "熱門"
+        },
+        "noir-cat-window": {
+          "name": "黑貓耳愛心展示包",
+          "description": "黑色貓耳造型展示包，愛心透明窗與金屬細節帶出個性風格。",
+          "details": [
+            "貓耳輪廓",
+            "愛心展示窗",
+            "可斜背"
+          ],
+          "badge": "新品"
+        },
+        "pink-flat-panel": {
+          "name": "粉色平面展示板包",
+          "description": "平面展示包，縫線排列方便徽章、壓克力吊飾與小配件定位。",
+          "details": [
+            "平面展示板",
+            "緞帶排列",
+            "容易收納"
+          ],
+          "badge": ""
+        }
+      },
+      "footer": {
+        "title": "聯繫 showmii",
+        "copy": "想詢問商品、現貨、預訂或合作，歡迎透過下方連結聯繫我們。",
+        "links": [
+          {
+            "label": "聯繫購買",
+            "target": "#purchase-info"
+          },
+          {
+            "label": "全部商品",
+            "target": "#products"
+          },
+          {
+            "label": "新品追蹤",
+            "target": "#products"
+          },
+          {
+            "label": "售後詢問",
+            "target": "#footer"
+          }
+        ]
+      },
+      "contact": {
+        "intro": "選擇你習慣的平台，把商品名稱或截圖傳給 showmii，我們會回覆庫存、金額與寄送方式。"
+      },
+      "purchase": {
+        "title": "購買與聯絡方式",
+        "intro": "喜歡的商品可先截圖或複製商品名稱，再透過下方平台詢問現貨、預訂、付款與寄送方式。",
+        "method": "請截圖商品或複製商品名稱，透過 Facebook、Instagram、LINE 或下方任一平台傳給 showmii。我們會回覆庫存、價格、付款與寄送方式，也可以在這裡補充預訂規則或優惠說明。",
+        "note": "實際付款、寄送與預訂細節會依商品狀態與當期活動回覆。"
+      }
+    },
+    "zh-Hans": {
+      "ui": {
+        "languageLabel": "语言",
+        "currencyLabel": "币别",
+        "search": "搜索",
+        "searchProducts": "搜索商品",
+        "account": "管理员登录",
+        "contactAdmin": "联系购买",
+        "categories": "分类",
+        "sort": "排序",
+        "featured": "精选",
+        "newest": "最新",
+        "priceAsc": "价格低到高",
+        "priceDesc": "价格高到低",
+        "alphabetical": "名称排序",
+        "details": "详情",
+        "contactToBuy": "联系购买",
+        "contactIntro": "选择你习惯的平台，把商品名称或截图发给 showmii。",
+        "selectedProductPrefix": "想询问的商品：",
+        "noContact": "目前尚未放上联系方式，请稍后再试。",
+        "view": "查看",
+        "productDetails": "商品详情",
+        "stockLine": "可询问数量",
+        "outOfStock": "缺货",
+        "noSearchStart": "开始输入即可搜索商品。",
+        "noResults": "找不到符合的商品。",
+        "resultUnit": "项商品于",
+        "languageSaved": "语言已更新。",
+        "contactSaved": "联系方式已保存。",
+        "priceLow": "价格从低到高",
+        "priceHigh": "价格从高到低",
+        "addToCart": "加入询问清单",
+        "cart": "询问清单",
+        "cartEmpty": "尚未加入想询问的商品。",
+        "checkoutDemo": "联系购买",
+        "moreImages": "更多图片",
+        "videoLink": "影片链接",
+        "openVideo": "打开影片",
+        "noMedia": "尚未新增更多图片或影片。",
+        "adminLogin": "管理员登录"
+      },
+      "announcement": "showmii 新品与热门款陆续上架，欢迎截图商品询问现货与预订。",
+      "brand": {
+        "shortName": "showmii",
+        "tagline": "展示包与日常小物选品"
+      },
+      "hero": {
+        "eyebrow": "showmii selection",
+        "title": "把喜欢的收藏，好好展示出来",
+        "subtitle": "从透明展示包、收纳配件到日常可爱小物，替你的收藏搭配干净、漂亮、好拍照的出门样子。",
+        "cta": "逛全部商品"
+      },
+      "layout": {
+        "collectionTitle": "全部商品",
+        "collectionDescription": "精选展示包、收纳配件与可爱小物。喜欢的款式可以直接截图或复制商品名称，通过下方平台询问库存与购买方式。"
+      },
+      "nav": [
+        {
+          "label": "首页"
+        },
+        {
+          "label": "新品"
+        },
+        {
+          "label": "热门"
+        },
+        {
+          "label": "全部商品"
+        },
+        {
+          "label": "购买方式"
+        },
+        {
+          "label": "联系"
+        }
+      ],
+      "categories": {
+        "all": {
+          "name": "全部商品",
+          "description": "商店内所有商品"
+        },
+        "new": {
+          "name": "新品",
+          "description": "最近新增"
+        },
+        "popular": {
+          "name": "热门",
+          "description": "最多人询问"
+        },
+        "ita-bags": {
+          "name": "展示包",
+          "description": "适合徽章与挂饰展示"
+        },
+        "pouches": {
+          "name": "展示收纳包",
+          "description": "收纳包与展示板"
+        },
+        "dark": {
+          "name": "深色系",
+          "description": "黑色与石墨色款式"
+        }
+      },
+      "serviceBadges": [
+        {
+          "title": "精选展示款式",
+          "copy": "透明展示、收纳分层与日常搭配感都替你先整理好。"
+        },
+        {
+          "title": "多平台询问",
+          "copy": "可通过 Facebook、Instagram、LINE 等常用平台询问。"
+        },
+        {
+          "title": "细节清楚好选",
+          "copy": "商品页整理尺寸、特色与搭配重点，下单前更好确认。"
+        }
+      ],
+      "products": {
+        "rose-heart-mini": {
+          "name": "玫瑰爱心迷你双肩包",
+          "description": "迷你粉色双肩包，搭配爱心展示窗、柔软荷叶边与侧边收纳口袋。",
+          "details": [
+            "爱心展示窗",
+            "可调式背带",
+            "侧边蝴蝶结口袋"
+          ],
+          "badge": "新品"
+        },
+        "mint-showcase-tote": {
+          "name": "薄荷展示托特包",
+          "description": "大容量薄荷托特包，正面透明展示窗适合整齐摆放徽章与挂饰。",
+          "details": [
+            "宽版展示窗",
+            "手提设计",
+            "金色五金"
+          ],
+          "badge": "热门"
+        },
+        "lavender-lace-crossbody": {
+          "name": "薰衣草绑带斜挎包",
+          "description": "细长肩背包，侧边绑带与透明展示窗让收藏更有层次。",
+          "details": [
+            "可拆背带",
+            "缎带饰边",
+            "平整展示空间"
+          ],
+          "badge": "优惠"
+        },
+        "cream-round-window": {
+          "name": "奶油圆窗展示包",
+          "description": "奶油色小包，圆形展示窗、蝴蝶结与挺版包身兼具可爱与质感。",
+          "details": [
+            "圆形展示窗",
+            "挺版底部",
+            "多种背法"
+          ],
+          "badge": "限量"
+        },
+        "black-heart-satchel": {
+          "name": "黑色爱心手提包",
+          "description": "黑色手提包搭配爱心透明口袋与精致蝴蝶结，适合深色系收藏。",
+          "details": [
+            "爱心展示口袋",
+            "手提把",
+            "斜挎带"
+          ],
+          "badge": "热卖"
+        },
+        "coral-drawstring-pack": {
+          "name": "珊瑚抽绳展示包",
+          "description": "柔软抽绳款展示包，圆弧透明窗与轻量容量适合日常携带。",
+          "details": [
+            "抽绳开口",
+            "圆弧透明窗",
+            "轻量包身"
+          ],
+          "badge": "新品"
+        },
+        "sky-frame-crossbody": {
+          "name": "天空蓝方窗斜挎包",
+          "description": "小巧天空蓝斜挎包，方形透明窗与利落车线适合简洁展示。",
+          "details": [
+            "透明前窗",
+            "可调式背带",
+            "小巧外型"
+          ],
+          "badge": ""
+        },
+        "graphite-grid-backpack": {
+          "name": "石墨黑格纹双肩包",
+          "description": "深色挺版双肩包，格纹展示面板可放徽章、挂饰与小娃。",
+          "details": [
+            "格纹展示面板",
+            "大容量收纳",
+            "挺版背带"
+          ],
+          "badge": "热门"
+        },
+        "violet-heart-shoulder": {
+          "name": "紫罗兰爱心肩背包",
+          "description": "紫色爱心展示窗肩背包，搭配蝴蝶结与圆润包型。",
+          "details": [
+            "爱心透明窗",
+            "长肩背带",
+            "装饰蝴蝶结"
+          ],
+          "badge": "新品"
+        },
+        "ivory-collector-case": {
+          "name": "象牙白收藏展示包",
+          "description": "矩形展示包，可收纳徽章与挂饰，柔和象牙白饰边方便整理。",
+          "details": [
+            "平整展示面",
+            "拉链开口",
+            "适合整理收藏"
+          ],
+          "badge": "热门"
+        },
+        "noir-cat-window": {
+          "name": "黑猫耳爱心展示包",
+          "description": "黑色猫耳造型展示包，爱心透明窗与金属细节带出个性风格。",
+          "details": [
+            "猫耳轮廓",
+            "爱心展示窗",
+            "可斜挎"
+          ],
+          "badge": "新品"
+        },
+        "pink-flat-panel": {
+          "name": "粉色平面展示板包",
+          "description": "平面展示包，缝线排列方便徽章、亚克力挂饰与小配件定位。",
+          "details": [
+            "平面展示板",
+            "缎带排列",
+            "容易收纳"
+          ],
+          "badge": ""
+        }
+      },
+      "footer": {
+        "title": "联系 showmii",
+        "copy": "想询问商品、现货、预订或合作，欢迎通过下方链接联系我们。",
+        "links": [
+          {
+            "label": "联系购买",
+            "target": "#purchase-info"
+          },
+          {
+            "label": "全部商品",
+            "target": "#products"
+          },
+          {
+            "label": "新品追踪",
+            "target": "#products"
+          },
+          {
+            "label": "售后询问",
+            "target": "#footer"
+          }
+        ]
+      },
+      "contact": {
+        "intro": "选择你习惯的平台，把商品名称或截图发给 showmii，我们会回复库存、金额与寄送方式。"
+      },
+      "purchase": {
+        "title": "购买与联系方式",
+        "intro": "喜欢的商品可先截图或复制商品名称，再通过下方平台询问现货、预订、付款与寄送方式。",
+        "method": "请截图商品或复制商品名称，通过 Facebook、Instagram、LINE 或下方任一平台发给 showmii。我们会回复库存、价格、付款与寄送方式，也可以在这里补充预订规则或优惠说明。",
+        "note": "实际付款、寄送与预订细节会依商品状态与当期活动回复。"
+      }
+    },
+    "en": {
+      "ui": {
+        "languageLabel": "Language",
+        "currencyLabel": "Currency",
+        "search": "Search",
+        "searchProducts": "Search products",
+        "account": "Admin Login",
+        "contactAdmin": "Contact to Buy",
+        "categories": "Categories",
+        "sort": "Sort",
+        "featured": "Featured",
+        "newest": "Newest",
+        "priceAsc": "Price, low to high",
+        "priceDesc": "Price, high to low",
+        "alphabetical": "Alphabetically",
+        "details": "Details",
+        "contactToBuy": "Contact to buy",
+        "contactIntro": "Choose your preferred platform and send showmii the product name or screenshot.",
+        "selectedProductPrefix": "Product to ask about:",
+        "noContact": "Contact links are not available yet. Please check again soon.",
+        "view": "View",
+        "productDetails": "Product details",
+        "stockLine": "available to ask about",
+        "outOfStock": "Out of stock",
+        "noSearchStart": "Start typing to search products.",
+        "noResults": "No matching products.",
+        "resultUnit": "items in",
+        "languageSaved": "Language updated.",
+        "contactSaved": "Contact methods saved.",
+        "priceLow": "Price, low to high",
+        "priceHigh": "Price, high to low",
+        "addToCart": "Add to inquiry list",
+        "cart": "Inquiry list",
+        "cartEmpty": "No products added for inquiry yet.",
+        "checkoutDemo": "Contact to buy",
+        "moreImages": "More images",
+        "videoLink": "Video link",
+        "openVideo": "Open video",
+        "noMedia": "No extra images or video yet.",
+        "adminLogin": "Admin Login"
+      },
+      "announcement": "New and popular showmii picks are arriving. Send a screenshot to ask about stock or preorders.",
+      "brand": {
+        "shortName": "showmii",
+        "tagline": "Display bags and daily cute goods"
+      },
+      "hero": {
+        "eyebrow": "showmii selection",
+        "title": "Display your favorites beautifully",
+        "subtitle": "Clear display bags, storage accessories, and daily cute goods selected for clean, photo-ready styling.",
+        "cta": "Shop all products"
+      },
+      "layout": {
+        "collectionTitle": "All products",
+        "collectionDescription": "Browse selected display bags, storage accessories, and cute goods. Screenshot or copy a product name, then ask through the contact links below for stock and purchase details."
+      },
+      "nav": [
+        {
+          "label": "Home"
+        },
+        {
+          "label": "New In"
+        },
+        {
+          "label": "Popular"
+        },
+        {
+          "label": "Shop All"
+        },
+        {
+          "label": "How to Buy"
+        },
+        {
+          "label": "Contact"
+        }
+      ],
+      "categories": {
+        "all": {
+          "name": "All Products",
+          "description": "Everything in the shop"
+        },
+        "new": {
+          "name": "New In",
+          "description": "Recently added items"
+        },
+        "popular": {
+          "name": "Popular",
+          "description": "Most requested styles"
+        },
+        "ita-bags": {
+          "name": "Ita Bags",
+          "description": "Window bags for pins and charms"
+        },
+        "pouches": {
+          "name": "Pouches",
+          "description": "Organizer pouches and panels"
+        },
+        "dark": {
+          "name": "Dark Color",
+          "description": "Black and graphite styles"
+        }
+      },
+      "serviceBadges": [
+        {
+          "title": "Curated display styles",
+          "copy": "Clear display, organized storage, and easy outfit pairing are selected for you."
+        },
+        {
+          "title": "Ask on your platform",
+          "copy": "Use Facebook, Instagram, LINE, or any contact link available below."
+        },
+        {
+          "title": "Details made easy",
+          "copy": "Product pages collect size notes, features, and styling points before you buy."
+        }
+      ],
+      "products": {
+        "rose-heart-mini": {
+          "name": "Rose Heart Mini Backpack",
+          "description": "Compact pastel backpack with a heart display window, soft ruffles, and side pockets for daily essentials.",
+          "details": [
+            "Heart display window",
+            "Adjustable straps",
+            "Side ribbon pockets"
+          ],
+          "badge": "New"
+        },
+        "mint-showcase-tote": {
+          "name": "Mint Showcase Tote",
+          "description": "Roomy mint tote with a rectangular clear panel and charm loops for a neat display layout.",
+          "details": [
+            "Wide display panel",
+            "Top handles",
+            "Gold-tone hardware"
+          ],
+          "badge": "Popular"
+        },
+        "lavender-lace-crossbody": {
+          "name": "Lavender Lace Crossbody",
+          "description": "Slim shoulder bag with lace-up side trim and a clear display window for a polished collection look.",
+          "details": [
+            "Detachable strap",
+            "Ribbon trim",
+            "Flat inner display space"
+          ],
+          "badge": "Sale"
+        },
+        "cream-round-window": {
+          "name": "Cream Round Window Bag",
+          "description": "Soft cream display bag with a round front window, bow detail, and structured compact body.",
+          "details": [
+            "Round viewing window",
+            "Structured base",
+            "Convertible carry"
+          ],
+          "badge": "Limited"
+        },
+        "black-heart-satchel": {
+          "name": "Black Heart Satchel",
+          "description": "Glossy black satchel with a heart-shaped display pocket and refined bow accent.",
+          "details": [
+            "Heart display pocket",
+            "Top handle",
+            "Crossbody strap"
+          ],
+          "badge": "Best Seller"
+        },
+        "coral-drawstring-pack": {
+          "name": "Coral Drawstring Pack",
+          "description": "Soft drawstring display pack with rounded front window and flexible daily capacity.",
+          "details": [
+            "Drawstring closure",
+            "Rounded window",
+            "Lightweight body"
+          ],
+          "badge": "New"
+        },
+        "sky-frame-crossbody": {
+          "name": "Sky Frame Crossbody",
+          "description": "Small sky-blue crossbody with a clear rectangular window and clean frame stitching.",
+          "details": [
+            "Clear front panel",
+            "Adjustable strap",
+            "Compact profile"
+          ],
+          "badge": ""
+        },
+        "graphite-grid-backpack": {
+          "name": "Graphite Grid Backpack",
+          "description": "Dark structured backpack with a grid panel for badges, charms, and small plush accessories.",
+          "details": [
+            "Grid display panel",
+            "Large storage area",
+            "Structured straps"
+          ],
+          "badge": "Popular"
+        },
+        "violet-heart-shoulder": {
+          "name": "Violet Heart Shoulder Bag",
+          "description": "Heart-window shoulder bag in violet with bow trim and a soft rounded silhouette.",
+          "details": [
+            "Heart window",
+            "Long shoulder strap",
+            "Decorative bow"
+          ],
+          "badge": "New"
+        },
+        "ivory-collector-case": {
+          "name": "Ivory Collector Case",
+          "description": "Rectangular pouch for pins and charms with soft ivory trim and an easy-access display panel.",
+          "details": [
+            "Flat display area",
+            "Zip closure",
+            "Organizer friendly"
+          ],
+          "badge": "Popular"
+        },
+        "noir-cat-window": {
+          "name": "Noir Cat Window Bag",
+          "description": "Black cat-ear display bag with a heart window and polished hardware details.",
+          "details": [
+            "Cat-ear silhouette",
+            "Heart display window",
+            "Crossbody ready"
+          ],
+          "badge": "New"
+        },
+        "pink-flat-panel": {
+          "name": "Pink Flat Display Panel",
+          "description": "Flat display pouch with stitched rows for arranging badges, acrylic charms, and small accessories.",
+          "details": [
+            "Flat panel",
+            "Ribbon rows",
+            "Easy packing"
+          ],
+          "badge": ""
+        }
+      },
+      "footer": {
+        "title": "Contact showmii",
+        "copy": "For products, stock, preorder, or collaboration questions, reach us through the links below.",
+        "links": [
+          {
+            "label": "Contact to buy",
+            "target": "#purchase-info"
+          },
+          {
+            "label": "All products",
+            "target": "#products"
+          },
+          {
+            "label": "New arrivals",
+            "target": "#products"
+          },
+          {
+            "label": "After-sales",
+            "target": "#footer"
+          }
+        ]
+      },
+      "contact": {
+        "intro": "Choose your preferred platform and send showmii the product name or screenshot. We will reply with stock, pricing, and shipping details."
+      },
+      "purchase": {
+        "title": "How to Buy and Contact",
+        "intro": "Screenshot a product or copy its name, then ask about stock, preorder, payment, and shipping through the links below.",
+        "method": "Screenshot the product or copy its name, then send it to showmii through Facebook, Instagram, LINE, or any link below. We will reply with stock, price, payment, and shipping details. This note can also include preorder rules or campaign details.",
+        "note": "Payment, shipping, and preorder details are confirmed based on product availability and current campaigns."
+      }
+    }
+  },
+  "purchase": {
+    "title": "購買與聯絡方式",
+    "intro": "喜歡的商品可先截圖或複製商品名稱，再透過下方平台詢問現貨、預訂、付款與寄送方式。",
+    "method": "請截圖商品或複製商品名稱，透過 Facebook、Instagram、LINE 或下方任一平台傳給 showmii。我們會回覆庫存、價格、付款與寄送方式，也可以在這裡補充預訂規則或優惠說明。",
+    "note": "實際付款、寄送與預訂細節會依商品狀態與當期活動回覆。"
+  }
+};
