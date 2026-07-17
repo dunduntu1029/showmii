@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="zh-Hant">
   <head>
     <meta charset="utf-8" />
@@ -6,7 +6,7 @@
     <title>showmii</title>
     <meta
       name="description"
-      content="showmii display bags, storage accessories, and cute goods. Contact us to ask about stock and purchase details."
+      content="Showmii 痛包、收納配件與可愛選物。歡迎聯繫我們詢問庫存與購買方式。"
     />
     <link rel="preload" href="assets/product-sprite.png" as="image" />
     <link rel="icon" href="assets/product-sprite.png" />
@@ -16,11 +16,11 @@
     <div id="app" class="site-shell">
       <div class="announcement" data-bind="announcement"></div>
 
-      <header class="site-header" aria-label="Site header">
+      <header class="site-header" aria-label="網站頁首">
         <div class="utility-bar">
-          <button class="text-action" type="button" data-action="open-search" data-i18n="search">Search</button>
+          <button class="text-action" type="button" data-action="open-search" data-i18n="search">搜尋</button>
           <label class="language-control">
-            <span data-i18n="languageLabel">Language</span>
+            <span data-i18n="languageLabel">語言</span>
             <select data-action="language">
               <option value="zh-Hant">繁體中文</option>
               <option value="zh-Hans">简体中文</option>
@@ -28,7 +28,7 @@
             </select>
           </label>
           <label class="currency-control">
-            <span data-i18n="currencyLabel">Currency</span>
+            <span data-i18n="currencyLabel">幣別</span>
             <select data-action="currency">
               <option value="TWD">台幣 TWD</option>
               <option value="CNY">人民幣 CNY</option>
@@ -46,16 +46,16 @@
             <span></span>
             <span></span>
             <span></span>
-            <span class="sr-only">Toggle menu</span>
+            <span class="sr-only">開啟選單</span>
           </button>
           <a class="brand-lockup" href="#home" data-action="home">
             <span class="brand-mark" data-bind="brand-mark">C</span>
             <span>
               <strong data-bind="brand-name">showmii</strong>
-              <small data-bind="brand-tagline">Display bag select studio</small>
+              <small data-bind="brand-tagline">痛包選物工作室</small>
             </span>
           </a>
-          <nav class="main-nav" data-region="nav" aria-label="Primary navigation"></nav>
+          <nav class="main-nav" data-region="nav" aria-label="主選單"></nav>
         </div>
       </header>
 
@@ -67,42 +67,42 @@
             <p class="hero-text" data-bind="hero-subtitle"></p>
             <div class="hero-actions">
               <a class="primary-button" href="#products" data-bind="hero-cta"></a>
-              <button class="secondary-button" type="button" data-action="open-search" data-i18n="searchProducts">Search products</button>
+              <button class="secondary-button" type="button" data-action="open-search" data-i18n="searchProducts">搜尋商品</button>
             </div>
           </div>
-          <div class="hero-visual" aria-label="Original product imagery">
-            <img src="assets/product-sprite.png" alt="Original display bag product collection" />
+          <div class="hero-visual" aria-label="商品視覺">
+            <img src="assets/product-sprite.png" alt="痛包與周邊商品系列" />
           </div>
         </section>
 
         <section class="collection" id="products" aria-labelledby="collection-title">
           <div class="collection-heading">
             <div>
-              <p class="breadcrumb">Home / Shop</p>
+              <p class="breadcrumb">首頁 / 商品</p>
               <h2 id="collection-title" data-bind="collection-title"></h2>
               <p data-bind="collection-description"></p>
             </div>
             <div class="collection-tools">
               <label class="search-field">
-                <span class="sr-only">Search products</span>
-                <input type="search" data-action="inline-search" placeholder="Search our store" />
+                <span class="sr-only">搜尋商品</span>
+                <input type="search" data-action="inline-search" placeholder="搜尋商品" />
               </label>
               <label class="sort-field">
-                <span>Sort</span>
+                <span>排序</span>
                 <select data-action="sort">
-                  <option value="manual">Featured</option>
-                  <option value="newest">Newest</option>
-                  <option value="price-asc">Price, low to high</option>
-                  <option value="price-desc">Price, high to low</option>
-                  <option value="name">Alphabetically</option>
+                  <option value="manual">精選順序</option>
+                  <option value="newest">最新上架</option>
+                  <option value="price-asc">價格低到高</option>
+                  <option value="price-desc">價格高到低</option>
+                  <option value="name">名稱排序</option>
                 </select>
               </label>
             </div>
           </div>
 
           <div class="collection-layout">
-            <aside class="filters" aria-label="Product filters">
-              <h3>Categories</h3>
+            <aside class="filters" aria-label="商品篩選">
+              <h3>分類</h3>
               <div class="filter-list" data-region="categories"></div>
             </aside>
             <div class="product-area">
@@ -112,11 +112,11 @@
           </div>
         </section>
 
-        <section class="service-strip" data-region="badges" aria-label="Service commitments"></section>
+        <section class="service-strip" data-region="badges" aria-label="服務承諾"></section>
 
         <section class="purchase-info" id="purchase-info" aria-labelledby="purchase-title">
           <div class="purchase-copy">
-            <p class="breadcrumb">Guide / Contact</p>
+            <p class="breadcrumb">購買 / 聯繫</p>
             <h2 id="purchase-title" data-bind="purchase-title"></h2>
             <p data-bind="purchase-intro"></p>
           </div>
@@ -133,14 +133,14 @@
       </footer>
     </div>
 
-    <dialog class="drawer" id="searchDrawer" aria-label="Search drawer">
+    <dialog class="drawer" id="searchDrawer" aria-label="搜尋視窗">
       <form method="dialog" class="drawer-head">
-        <h2 data-i18n="search">Search</h2>
-        <button class="icon-button" type="submit" aria-label="Close search">×</button>
+        <h2 data-i18n="search">搜尋</h2>
+        <button class="icon-button" type="submit" aria-label="關閉搜尋">×</button>
       </form>
       <label class="drawer-search">
-        <span class="sr-only">Search our store</span>
-        <input type="search" data-action="drawer-search" placeholder="Search our store" />
+        <span class="sr-only">搜尋商品</span>
+        <input type="search" data-action="drawer-search" placeholder="搜尋商品" />
       </label>
       <div class="drawer-results" data-region="search-results"></div>
     </dialog>
@@ -171,7 +171,7 @@
       </div>
       <div class="contact-options" data-region="contact-options"></div>
     </dialog>
-    <dialog class="quick-view" id="quickView" aria-label="Product details"></dialog>
+    <dialog class="quick-view" id="quickView" aria-label="商品詳情"></dialog>
 
     <dialog class="admin-gate" id="adminGate" aria-label="管理員登入">
       <form method="dialog" class="admin-card" data-form="admin-login">
