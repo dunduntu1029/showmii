@@ -1,0 +1,207 @@
+﻿<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>showmii</title>
+    <meta
+      name="description"
+      content="showmii display bags, storage accessories, and cute goods. Contact us to ask about stock and purchase details."
+    />
+    <link rel="preload" href="assets/product-sprite.png" as="image" />
+    <link rel="icon" href="assets/product-sprite.png" />
+    <link rel="stylesheet" href="assets/styles.css" />
+  </head>
+  <body>
+    <div id="app" class="site-shell">
+      <div class="announcement" data-bind="announcement"></div>
+
+      <header class="site-header" aria-label="Site header">
+        <div class="utility-bar">
+          <button class="text-action" type="button" data-action="open-search" data-i18n="search">Search</button>
+          <label class="language-control">
+            <span data-i18n="languageLabel">Language</span>
+            <select data-action="language">
+              <option value="zh-Hant">繁體中文</option>
+              <option value="zh-Hans">简体中文</option>
+              <option value="en">English</option>
+            </select>
+          </label>
+          <label class="currency-control">
+            <span data-i18n="currencyLabel">Currency</span>
+            <select data-action="currency">
+              <option value="TWD">台幣 TWD</option>
+              <option value="CNY">人民幣 CNY</option>
+              <option value="USD">美金 USD</option>
+            </select>
+          </label>
+          <button class="text-action" type="button" data-action="account" data-i18n="account">管理員登入</button>
+          <button class="cart-link" type="button" data-action="open-contact">
+            <span data-i18n="contactAdmin">聯繫購買</span>
+          </button>
+        </div>
+
+        <div class="brand-row">
+          <button class="menu-toggle" type="button" data-action="toggle-menu" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span class="sr-only">Toggle menu</span>
+          </button>
+          <a class="brand-lockup" href="#home" data-action="home">
+            <span class="brand-mark" data-bind="brand-mark">C</span>
+            <span>
+              <strong data-bind="brand-name">showmii</strong>
+              <small data-bind="brand-tagline">Display bag select studio</small>
+            </span>
+          </a>
+          <nav class="main-nav" data-region="nav" aria-label="Primary navigation"></nav>
+        </div>
+      </header>
+
+      <main>
+        <section class="hero" id="home" aria-labelledby="hero-title">
+          <div class="hero-copy">
+            <p class="eyebrow" data-bind="hero-eyebrow"></p>
+            <h1 id="hero-title" data-bind="hero-title"></h1>
+            <p class="hero-text" data-bind="hero-subtitle"></p>
+            <div class="hero-actions">
+              <a class="primary-button" href="#products" data-bind="hero-cta"></a>
+              <button class="secondary-button" type="button" data-action="open-search" data-i18n="searchProducts">Search products</button>
+            </div>
+          </div>
+          <div class="hero-visual" aria-label="Original product imagery">
+            <img src="assets/product-sprite.png" alt="Original display bag product collection" />
+          </div>
+        </section>
+
+        <section class="collection" id="products" aria-labelledby="collection-title">
+          <div class="collection-heading">
+            <div>
+              <p class="breadcrumb">Home / Shop</p>
+              <h2 id="collection-title" data-bind="collection-title"></h2>
+              <p data-bind="collection-description"></p>
+            </div>
+            <div class="collection-tools">
+              <label class="search-field">
+                <span class="sr-only">Search products</span>
+                <input type="search" data-action="inline-search" placeholder="Search our store" />
+              </label>
+              <label class="sort-field">
+                <span>Sort</span>
+                <select data-action="sort">
+                  <option value="manual">Featured</option>
+                  <option value="newest">Newest</option>
+                  <option value="price-asc">Price, low to high</option>
+                  <option value="price-desc">Price, high to low</option>
+                  <option value="name">Alphabetically</option>
+                </select>
+              </label>
+            </div>
+          </div>
+
+          <div class="collection-layout">
+            <aside class="filters" aria-label="Product filters">
+              <h3>Categories</h3>
+              <div class="filter-list" data-region="categories"></div>
+            </aside>
+            <div class="product-area">
+              <div class="result-line" data-bind="result-line"></div>
+              <div class="product-grid" data-region="products"></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="service-strip" data-region="badges" aria-label="Service commitments"></section>
+
+        <section class="purchase-info" id="purchase-info" aria-labelledby="purchase-title">
+          <div class="purchase-copy">
+            <p class="breadcrumb">Guide / Contact</p>
+            <h2 id="purchase-title" data-bind="purchase-title"></h2>
+            <p data-bind="purchase-intro"></p>
+          </div>
+          <div class="purchase-panel" data-region="purchase-panel"></div>
+        </section>
+      </main>
+
+      <footer class="site-footer" id="footer">
+        <div>
+          <h2 data-bind="footer-title"></h2>
+          <p data-bind="footer-copy"></p>
+        </div>
+        <div class="footer-links" data-region="footer-links"></div>
+      </footer>
+    </div>
+
+    <dialog class="drawer" id="searchDrawer" aria-label="Search drawer">
+      <form method="dialog" class="drawer-head">
+        <h2 data-i18n="search">Search</h2>
+        <button class="icon-button" type="submit" aria-label="Close search">×</button>
+      </form>
+      <label class="drawer-search">
+        <span class="sr-only">Search our store</span>
+        <input type="search" data-action="drawer-search" placeholder="Search our store" />
+      </label>
+      <div class="drawer-results" data-region="search-results"></div>
+    </dialog>
+
+    <dialog class="drawer" id="cartDrawer" aria-label="詢問清單">
+      <form method="dialog" class="drawer-head">
+        <h2 data-i18n="cart">詢問清單</h2>
+        <button class="icon-button" type="submit" aria-label="Close cart">×</button>
+      </form>
+      <div class="cart-items" data-region="cart-items"></div>
+      <div class="cart-total">
+        <span>合計</span>
+        <strong data-bind="cart-total">NT$0</strong>
+      </div>
+      <button class="primary-button full-width" type="button" data-action="checkout-contact" data-i18n="checkoutDemo">聯繫購買</button>
+    </dialog>
+
+
+    <dialog class="drawer" id="contactDrawer" aria-label="聯繫購買">
+      <form method="dialog" class="drawer-head">
+        <h2 data-i18n="contactAdmin">聯繫購買</h2>
+        <button class="icon-button" type="submit" aria-label="Close contact">×</button>
+      </form>
+      <div class="contact-intro">
+        <strong data-region="contact-product"></strong>
+        <p data-region="contact-intro">選擇你習慣的平台，把商品名稱或截圖傳給 showmii。</p>
+        <div class="purchase-method" data-region="purchase-method"></div>
+      </div>
+      <div class="contact-options" data-region="contact-options"></div>
+    </dialog>
+    <dialog class="quick-view" id="quickView" aria-label="Product details"></dialog>
+
+    <dialog class="admin-gate" id="adminGate" aria-label="管理員登入">
+      <form method="dialog" class="admin-card" data-form="admin-login">
+        <h2>管理員登入</h2>
+        <label>
+          <span>帳號</span>
+          <input type="text" name="username" autocomplete="username" required />
+        </label>
+        <label>
+          <span>密碼</span>
+          <input type="password" name="passcode" autocomplete="current-password" required />
+        </label>
+        <div class="admin-actions">
+          <button class="secondary-button" type="button" data-action="close-dialog">取消</button>
+          <button class="primary-button" value="default" type="submit">登入</button>
+        </div>
+      </form>
+    </dialog>
+
+    <aside class="admin-panel" data-region="admin-panel" aria-label="showmii 管理頁" hidden></aside>
+    <div class="toast" data-region="toast" aria-live="polite"></div>
+
+    <script charset="utf-8" src="assets/default-data.js"></script>
+    <script charset="utf-8" src="assets/app.js"></script>
+  </body>
+</html>
+
+
+
+
+
+
+
