@@ -1,6 +1,7 @@
 ﻿(() => {
   "use strict";
 
+  const LIVE_DATA_URL = "data/default-site-export.json";
   const DEFAULT_SITE = window.CAILUCKY_DEFAULT_SITE;
   const SITE_KEY = "showmii_static_shop_site_v3";
   const CART_KEY = "showmii_static_shop_contact_cart_v3";
@@ -25,7 +26,7 @@
     contactProductId: ""
   };
 
-  let site = loadSite();
+  let site = normalizeSite(DEFAULT_SITE);
   let cart = loadCart();
 
   const $ = (selector, root = document) => root.querySelector(selector);
@@ -49,6 +50,24 @@
     if (!text) return "";
     if (/^(https?:|mailto:|tel:|line:|data:image\/|assets\/|\.\/|\/)/i.test(text)) return text;
     return "";
+  }
+
+  function moneyCode(value) {
+    return money[value] ? value : "TWD";
+  }
+
+  function currencyFromBase(value, code = site?.layout?.currency || "TWD") {
+    const config = money[moneyCode(code)];
+    return Number(value || 0) * config.rate;
+  }
+
+  function baseFromCurrency(value, code = "TWD") {
+    const config = money[moneyCode(code)];
+    return Number(value || 0) / config.rate;
+  }
+
+  function roundMoney(value) {
+    return Math.round((Number(value) || 0) * 100) / 100;
   }
 
   function normalizeSite(data) {
@@ -85,17 +104,18 @@
     next.products = Array.isArray(data?.products) ? data.products : clone(DEFAULT_SITE.products);
     next.categories = next.categories.map((category, index) => ({
       id: slug(category.id || category.name || `category-${index + 1}`),
-      name: category.name || "Category",
+      name: category.name || "未命名分類",
       description: category.description || "",
       order: Number.isFinite(Number(category.order)) ? Number(category.order) : index
     }));
     next.products = next.products.map((product, index) => ({
       id: slug(product.id || product.name || `product-${index + 1}`),
-      name: product.name || "Product",
+      name: product.name || "未命名商品",
       category: product.category || "all",
       tags: Array.isArray(product.tags) ? product.tags : stringList(product.tags),
       price: Number(product.price) || 0,
       compareAt: Number(product.compareAt) || 0,
+      priceCurrency: moneyCode(product.priceCurrency || product.currency || "TWD"),
       badge: product.badge || "",
       description: product.description || "",
       details: Array.isArray(product.details) ? product.details : stringList(product.details),
@@ -112,13 +132,19 @@
     return next;
   }
 
-  function loadSite() {
+  async function fetchLiveSite() {
     try {
-      const stored = localStorage.getItem(SITE_KEY);
-      return normalizeSite(stored ? JSON.parse(stored) : DEFAULT_SITE);
+      const response = await fetch(`${LIVE_DATA_URL}?v=${Date.now()}`, { cache: "no-store" });
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      return normalizeSite(await response.json());
     } catch {
-      return normalizeSite(DEFAULT_SITE);
+      return null;
     }
+  }
+
+  async function loadSite() {
+    const liveSite = await fetchLiveSite();
+    return liveSite || normalizeSite(DEFAULT_SITE);
   }
 
   function loadCart() {
@@ -308,7 +334,7 @@
       const view = localizedNav(item, index);
       const link = document.createElement("a");
       link.href = item.target || "#products";
-      link.textContent = view.label || "Link";
+      link.textContent = view.label || "連結";
       link.dataset.action = "nav";
       if (item.category) link.dataset.category = item.category;
       if (item.category === state.category) link.classList.add("is-active");
@@ -352,7 +378,7 @@
       const category = getCategories().find((item) => item.id === state.category);
       const categoryView = category ? localizedCategory(category) : null;
       resultLine.textContent = `${products.length} ${ui("resultUnit")} ${
-        categoryView?.name || tx("layout.collectionTitle", "All Products")
+        categoryView?.name || tx("layout.collectionTitle", "全部商品")
       }`;
     }
 
@@ -431,7 +457,7 @@
       const view = localizedFooterLink(link, index);
       const anchor = document.createElement("a");
       anchor.href = safeUrl(link.target) || "#products";
-      anchor.textContent = view.label || "Link";
+      anchor.textContent = view.label || "連結";
       region.append(anchor);
     });
   }
@@ -553,15 +579,27 @@
     return "";
   }
 
-  function formatPrice(value) {
-    const code = site.layout.currency || "USD";
-    const config = money[code] || money.USD;
-    const converted = Number(value || 0) * config.rate;
-    const fraction = code === "JPY" || code === "TWD" ? 0 : 2;
+  function formatPriceInCurrency(value, code = site.layout.currency || "TWD") {
+    const currencyCode = moneyCode(code);
+    const config = money[currencyCode];
+    const converted = currencyFromBase(value, currencyCode);
+    const fraction = currencyCode === "TWD" ? 0 : 2;
     return `${config.symbol}${converted.toLocaleString(undefined, {
       minimumFractionDigits: fraction,
       maximumFractionDigits: fraction
     })}`;
+  }
+
+  function formatPrice(value) {
+    return formatPriceInCurrency(value, site.layout.currency || "TWD");
+  }
+
+  function productInputCurrency(product) {
+    return moneyCode(product?.priceCurrency || site.layout.currency || "TWD");
+  }
+
+  function productCurrencyAmount(product, field) {
+    return roundMoney(currencyFromBase(product?.[field] || 0, productInputCurrency(product)));
   }
 
   function addToCart(id) {
@@ -571,7 +609,7 @@
     if (existing) existing.qty += 1;
     else cart.push({ id, qty: 1 });
     persistCart();
-    toast(`${product.name} added to cart.`);
+    toast(`${product.name} 已加入詢問清單。`);
   }
 
   function changeCart(id, delta) {
@@ -622,7 +660,7 @@
             )}">+</button>
             <button class="admin-small" type="button" data-action="cart-remove" data-product="${escapeHtml(
               product.id
-            )}">Remove</button>
+            )}">移除</button>
           </div>
         `;
         item.append(thumb, copy);
@@ -1156,8 +1194,9 @@
           <div class="admin-grid">
             ${productInput("商品名稱", index, "name", selected.name)}
             ${productInput("ID", index, "id", selected.id)}
-            ${productInput("價格", index, "price", selected.price, "number", 0)}
-            ${productInput("原價", index, "compareAt", selected.compareAt, "number", 0)}
+            ${productCurrencySelect("價格輸入幣別", index, selected)}
+            ${productInput("售價（依上方幣別輸入）", index, "price", productCurrencyAmount(selected, "price"), "number", 0, "0.01")}
+            ${productInput("原價（依上方幣別輸入）", index, "compareAt", productCurrencyAmount(selected, "compareAt"), "number", 0, "0.01")}
             ${productInput("標籤", index, "badge", selected.badge)}
             ${productInput("庫存", index, "stock", selected.stock, "number", 0)}
             ${productInput("排序", index, "order", selected.order, "number", 0)}
@@ -1166,6 +1205,8 @@
             ${spriteInput("內建圖片欄 0-3", index, "col", selected.sprite?.col || 0)}
             ${spriteInput("內建圖片列 0-2", index, "row", selected.sprite?.row || 0)}
           </div>
+          ${productCurrencyPreview(selected)}
+
           ${productTextarea("標籤 ID，用逗號分隔", index, "tags", selected.tags.join(", "))}
           ${productTextarea("商品說明", index, "description", selected.description)}
           ${productTextarea("商品細節，一行一個", index, "details", selected.details.join("\\n"))}
@@ -1186,8 +1227,8 @@
           <div class="admin-toolbar">
             <button class="secondary-button" type="button" data-action="json-refresh">重新整理</button>
             <button class="secondary-button" type="button" data-action="json-apply">套用 JSON</button>
-            <button class="primary-button" type="button" data-action="json-export">匯出 JSON 備份</button>
-            <button class="secondary-button" type="button" data-action="json-export-js">匯出 GitHub 資料檔</button>
+            <button class="primary-button" type="button" data-action="json-export">匯出網站資料 JSON</button>
+            <button class="secondary-button" type="button" data-action="json-export-js">匯出備援 default-data.js</button>
             <label class="secondary-button">
               匯入 JSON
               <input class="sr-only" type="file" accept="application/json,.json" data-action="json-import" />
@@ -1243,14 +1284,44 @@
     `;
   }
 
-  function productInput(label, index, field, value, type = "text", min = "") {
+  function productInput(label, index, field, value, type = "text", min = "", step = "") {
     return `
       <label>
         <span>${escapeHtml(label)}</span>
         <input type="${type}" value="${escapeHtml(value)}" data-product-index="${index}" data-product-field="${field}" ${
           min !== "" ? `min="${min}"` : ""
-        } />
+        } ${step !== "" ? `step="${step}"` : ""} />
       </label>
+    `;
+  }
+
+  function productCurrencySelect(label, index, product) {
+    const selected = productInputCurrency(product);
+    return `
+      <label>
+        <span>${escapeHtml(label)}</span>
+        <select data-product-index="${index}" data-product-field="priceCurrency">
+          ${Object.entries(money)
+            .map(
+              ([code, config]) =>
+                `<option value="${code}" ${selected === code ? "selected" : ""}>${escapeHtml(config.label)}</option>`
+            )
+            .join("")}
+        </select>
+      </label>
+    `;
+  }
+
+  function productCurrencyPreview(product) {
+    const rows = Object.entries(money)
+      .map(([code, config]) => `<span><b>${escapeHtml(config.label)}</b>${formatPriceInCurrency(product.price, code)}</span>`)
+      .join("");
+    return `
+      <div class="price-conversion-panel">
+        <strong>價格換算預覽</strong>
+        <div>${rows}</div>
+        <small>內部會以台幣基準價保存，前台會依消費者選的幣別自動換算。</small>
+      </div>
     `;
   }
 
@@ -1299,7 +1370,7 @@
       .filter(Boolean);
     return rows.map((line) => {
       const [label, target, category] = line.split("|").map((part) => part.trim());
-      return { label: label || "Link", target: target || "#products", category: category || "" };
+      return { label: label || "連結", target: target || "#products", category: category || "" };
     });
   }
 
@@ -1321,7 +1392,7 @@
       .filter(Boolean)
       .map((line) => {
         const [label, target] = line.split("|").map((part) => part.trim());
-        return { label: label || "Link", target: target || "#products" };
+        return { label: label || "連結", target: target || "#products" };
       });
   }
 
@@ -1427,7 +1498,15 @@
       });
       return;
     }
-    if (["price", "compareAt", "stock", "order"].includes(field)) {
+    if (field === "priceCurrency") {
+      product.priceCurrency = moneyCode(value);
+      return;
+    }
+    if (["price", "compareAt"].includes(field)) {
+      product[field] = roundMoney(baseFromCurrency(value, productInputCurrency(product)));
+      return;
+    }
+    if (["stock", "order"].includes(field)) {
       product[field] = Number(value) || 0;
       return;
     }
@@ -1457,7 +1536,7 @@
     const order = site.categories.length;
     site.categories.push({
       id: `category-${order + 1}`,
-      name: `Category ${order + 1}`,
+      name: `分類 ${order + 1}`,
       description: "",
       order
     });
@@ -1467,13 +1546,15 @@
   function addProduct() {
     const order = site.products.length + 1;
     const category = getCategories().find((item) => item.id !== "all")?.id || "all";
+    const currency = moneyCode(site.layout.currency || "TWD");
     const product = {
       id: `new-product-${Date.now()}`,
       name: "新商品",
       category,
       tags: ["new"],
-      price: 29,
+      price: roundMoney(baseFromCurrency(29, currency)),
       compareAt: 0,
+      priceCurrency: currency,
       badge: "新品",
       description: "可編輯商品說明。",
       details: ["可編輯商品細節"],
@@ -1615,7 +1696,7 @@
     }
     if (action === "category-up" || action === "category-down") {
       const moved = moveItem(site.categories, Number(target.dataset.index), action === "category-up" ? -1 : 1);
-      if (moved) persistSite("Category order updated.");
+      if (moved) persistSite("分類排序已更新。");
     }
     if (action === "product-delete") {
       const index = Number(target.dataset.index);
@@ -1623,25 +1704,25 @@
       cart = cart.filter((item) => item.id !== removed?.id);
       state.selectedProductId = site.products[Math.max(0, index - 1)]?.id || "";
       persistCart();
-      persistSite("Product deleted.");
+      persistSite("商品已刪除。");
     }
     if (action === "product-duplicate") {
       const source = site.products[Number(target.dataset.index)];
       if (!source) return;
       const copy = clone(source);
       copy.id = `${source.id}-copy-${Date.now()}`;
-      copy.name = `${source.name} Copy`;
+      copy.name = `${source.name} 複製`;
       copy.order = site.products.length + 1;
       site.products.push(copy);
       state.selectedProductId = copy.id;
-      persistSite("Product duplicated.");
+      persistSite("商品已複製。");
     }
     if (action === "product-up" || action === "product-down") {
       const moved = moveItem(site.products, Number(target.dataset.index), action === "product-up" ? -1 : 1);
-      if (moved) persistSite("Product order updated.");
+      if (moved) persistSite("商品排序已更新。");
     }
-    if (action === "json-export") downloadJson(`cailucky-site-${dateStamp()}.json`, site);
-    if (action === "json-export-js") downloadText(`default-data-${dateStamp()}.js`, `window.CAILUCKY_DEFAULT_SITE = ${JSON.stringify(site, null, 2)};` + "\\n", "text/javascript");
+    if (action === "json-export") downloadJson("default-site-export.json", site);
+    if (action === "json-export-js") downloadText("default-data.js", `window.CAILUCKY_DEFAULT_SITE = ${JSON.stringify(site, null, 2)};` + "\n", "text/javascript");
     if (action === "download-backup") {
       const backup = localStorage.getItem(BACKUP_KEY);
       downloadJson(`cailucky-first-backup-${dateStamp()}.json`, backup ? JSON.parse(backup) : DEFAULT_SITE);
@@ -1652,9 +1733,9 @@
       try {
         site = normalizeSite(JSON.parse(text));
         state.selectedProductId = site.products[0]?.id || "";
-        persistSite("JSON applied.");
+        persistSite("JSON 已套用。");
       } catch (error) {
-        toast(`JSON error: ${error.message}`);
+        toast(`JSON 格式錯誤：${error.message}`);
       }
     }
     if (action === "reset-defaults") {
@@ -1704,11 +1785,11 @@
     }
     if (target.matches("[data-product-index][data-product-field]")) {
       updateProduct(Number(target.dataset.productIndex), target.dataset.productField, target.value);
-      persistSite("商品已儲存。");
+      persistSite(target.dataset.productField === "priceCurrency" ? "\u50f9\u683c\u5e63\u5225\u5df2\u66f4\u65b0\uff0c\u5df2\u81ea\u52d5\u63db\u7b97\u986f\u793a\u3002" : "\u5546\u54c1\u5df2\u5132\u5b58\u3002");
     }
     if (target.matches("[data-product-index][data-sprite-field]")) {
       updateSprite(Number(target.dataset.productIndex), target.dataset.spriteField, target.value);
-      persistSite("Product image crop saved.");
+      persistSite("商品圖片位置已儲存。");
     }
     if (target.matches('[data-action="admin-select-product"]')) {
       state.selectedProductId = target.value;
@@ -1720,9 +1801,9 @@
         try {
           site = normalizeSite(JSON.parse(String(reader.result || "")));
           state.selectedProductId = site.products[0]?.id || "";
-          persistSite("JSON imported.");
+          persistSite("JSON 已匯入。");
         } catch (error) {
-          toast(`Import failed: ${error.message}`);
+          toast(`匯入失敗：${error.message}`);
         }
       });
       reader.readAsText(target.files[0]);
@@ -1760,9 +1841,14 @@
     return new Date().toISOString().slice(0, 10);
   }
 
-  ensureBackup();
-  renderAll();
-  maybeOpenAdminFromUrl();
+  async function bootSite() {
+    site = await loadSite();
+    ensureBackup();
+    renderAll();
+    maybeOpenAdminFromUrl();
+  }
+
+  bootSite();
 })();
 
 

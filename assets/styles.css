@@ -1563,3 +1563,46 @@ body {
   }
 }
 
+
+.price-conversion-panel {
+  display: grid;
+  gap: 10px;
+  border: 1px solid color-mix(in srgb, var(--primary) 18%, var(--border));
+  border-radius: 8px;
+  padding: 12px;
+  background: color-mix(in srgb, var(--accent) 6%, white);
+}
+
+.price-conversion-panel strong {
+  font-size: 14px;
+}
+
+.price-conversion-panel div {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.price-conversion-panel span {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 9px;
+  background: white;
+  font-weight: 800;
+}
+
+.price-conversion-panel b,
+.price-conversion-panel small {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+@media (max-width: 760px) {
+  .price-conversion-panel div {
+    grid-template-columns: 1fr;
+  }
+}
