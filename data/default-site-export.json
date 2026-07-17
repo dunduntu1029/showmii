@@ -146,7 +146,8 @@
       },
       "imageUrl": "",
       "images": [],
-      "videoUrl": ""
+      "videoUrl": "",
+      "priceCurrency": "TWD"
     },
     {
       "id": "mint-showcase-tote",
@@ -172,7 +173,8 @@
       },
       "imageUrl": "",
       "images": [],
-      "videoUrl": ""
+      "videoUrl": "",
+      "priceCurrency": "TWD"
     },
     {
       "id": "lavender-lace-crossbody",
@@ -198,7 +200,8 @@
       },
       "imageUrl": "",
       "images": [],
-      "videoUrl": ""
+      "videoUrl": "",
+      "priceCurrency": "TWD"
     },
     {
       "id": "cream-round-window",
@@ -224,7 +227,8 @@
       },
       "imageUrl": "",
       "images": [],
-      "videoUrl": ""
+      "videoUrl": "",
+      "priceCurrency": "TWD"
     },
     {
       "id": "black-heart-satchel",
@@ -250,7 +254,8 @@
       },
       "imageUrl": "",
       "images": [],
-      "videoUrl": ""
+      "videoUrl": "",
+      "priceCurrency": "TWD"
     },
     {
       "id": "coral-drawstring-pack",
@@ -276,7 +281,8 @@
       },
       "imageUrl": "",
       "images": [],
-      "videoUrl": ""
+      "videoUrl": "",
+      "priceCurrency": "TWD"
     },
     {
       "id": "sky-frame-crossbody",
@@ -300,7 +306,8 @@
       },
       "imageUrl": "",
       "images": [],
-      "videoUrl": ""
+      "videoUrl": "",
+      "priceCurrency": "TWD"
     },
     {
       "id": "graphite-grid-backpack",
@@ -326,7 +333,8 @@
       },
       "imageUrl": "",
       "images": [],
-      "videoUrl": ""
+      "videoUrl": "",
+      "priceCurrency": "TWD"
     },
     {
       "id": "violet-heart-shoulder",
@@ -352,7 +360,8 @@
       },
       "imageUrl": "",
       "images": [],
-      "videoUrl": ""
+      "videoUrl": "",
+      "priceCurrency": "TWD"
     },
     {
       "id": "ivory-collector-case",
@@ -378,7 +387,8 @@
       },
       "imageUrl": "",
       "images": [],
-      "videoUrl": ""
+      "videoUrl": "",
+      "priceCurrency": "TWD"
     },
     {
       "id": "noir-cat-window",
@@ -404,7 +414,8 @@
       },
       "imageUrl": "",
       "images": [],
-      "videoUrl": ""
+      "videoUrl": "",
+      "priceCurrency": "TWD"
     },
     {
       "id": "pink-flat-panel",
@@ -428,7 +439,8 @@
       },
       "imageUrl": "",
       "images": [],
-      "videoUrl": ""
+      "videoUrl": "",
+      "priceCurrency": "TWD"
     }
   ],
   "footer": {
