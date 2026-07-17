@@ -1,8 +1,8 @@
 {
   "schemaVersion": 3,
   "admin": {
-    "username": "showmii",
-    "passcode": "showmii-admin",
+    "username": "dunduntu1029",
+    "passcode": "Tu981029.",
     "hint": "管理員入口位於網站上方「管理員登入」。"
   },
   "brand": {
@@ -131,6 +131,7 @@
       ],
       "price": 39.99,
       "compareAt": 49.99,
+      "priceCurrency": "TWD",
       "badge": "New",
       "description": "Compact pastel backpack with a heart display window, soft ruffles, and side pockets for daily essentials.",
       "details": [
@@ -146,8 +147,7 @@
       },
       "imageUrl": "",
       "images": [],
-      "videoUrl": "",
-      "priceCurrency": "TWD"
+      "videoUrl": ""
     },
     {
       "id": "mint-showcase-tote",
@@ -158,6 +158,7 @@
       ],
       "price": 42,
       "compareAt": 0,
+      "priceCurrency": "TWD",
       "badge": "Popular",
       "description": "Roomy mint tote with a rectangular clear panel and charm loops for a neat display layout.",
       "details": [
@@ -173,8 +174,7 @@
       },
       "imageUrl": "",
       "images": [],
-      "videoUrl": "",
-      "priceCurrency": "TWD"
+      "videoUrl": ""
     },
     {
       "id": "lavender-lace-crossbody",
@@ -185,6 +185,7 @@
       ],
       "price": 35.5,
       "compareAt": 44,
+      "priceCurrency": "TWD",
       "badge": "Sale",
       "description": "Slim shoulder bag with lace-up side trim and a clear display window for a polished collection look.",
       "details": [
@@ -200,8 +201,7 @@
       },
       "imageUrl": "",
       "images": [],
-      "videoUrl": "",
-      "priceCurrency": "TWD"
+      "videoUrl": ""
     },
     {
       "id": "cream-round-window",
@@ -212,6 +212,7 @@
       ],
       "price": 47.99,
       "compareAt": 0,
+      "priceCurrency": "TWD",
       "badge": "Limited",
       "description": "Soft cream display bag with a round front window, bow detail, and structured compact body.",
       "details": [
@@ -227,8 +228,7 @@
       },
       "imageUrl": "",
       "images": [],
-      "videoUrl": "",
-      "priceCurrency": "TWD"
+      "videoUrl": ""
     },
     {
       "id": "black-heart-satchel",
@@ -239,6 +239,7 @@
       ],
       "price": 44.99,
       "compareAt": 52,
+      "priceCurrency": "TWD",
       "badge": "Best Seller",
       "description": "Glossy black satchel with a heart-shaped display pocket and refined bow accent.",
       "details": [
@@ -254,8 +255,7 @@
       },
       "imageUrl": "",
       "images": [],
-      "videoUrl": "",
-      "priceCurrency": "TWD"
+      "videoUrl": ""
     },
     {
       "id": "coral-drawstring-pack",
@@ -266,6 +266,7 @@
       ],
       "price": 32,
       "compareAt": 0,
+      "priceCurrency": "TWD",
       "badge": "New",
       "description": "Soft drawstring display pack with rounded front window and flexible daily capacity.",
       "details": [
@@ -281,8 +282,7 @@
       },
       "imageUrl": "",
       "images": [],
-      "videoUrl": "",
-      "priceCurrency": "TWD"
+      "videoUrl": ""
     },
     {
       "id": "sky-frame-crossbody",
@@ -291,6 +291,7 @@
       "tags": [],
       "price": 36.99,
       "compareAt": 0,
+      "priceCurrency": "TWD",
       "badge": "",
       "description": "Small sky-blue crossbody with a clear rectangular window and clean frame stitching.",
       "details": [
@@ -306,8 +307,7 @@
       },
       "imageUrl": "",
       "images": [],
-      "videoUrl": "",
-      "priceCurrency": "TWD"
+      "videoUrl": ""
     },
     {
       "id": "graphite-grid-backpack",
@@ -318,6 +318,7 @@
       ],
       "price": 54,
       "compareAt": 0,
+      "priceCurrency": "TWD",
       "badge": "Popular",
       "description": "Dark structured backpack with a grid panel for badges, charms, and small plush accessories.",
       "details": [
@@ -333,8 +334,7 @@
       },
       "imageUrl": "",
       "images": [],
-      "videoUrl": "",
-      "priceCurrency": "TWD"
+      "videoUrl": ""
     },
     {
       "id": "violet-heart-shoulder",
@@ -345,6 +345,7 @@
       ],
       "price": 41.5,
       "compareAt": 48,
+      "priceCurrency": "TWD",
       "badge": "New",
       "description": "Heart-window shoulder bag in violet with bow trim and a soft rounded silhouette.",
       "details": [
@@ -360,8 +361,7 @@
       },
       "imageUrl": "",
       "images": [],
-      "videoUrl": "",
-      "priceCurrency": "TWD"
+      "videoUrl": ""
     },
     {
       "id": "ivory-collector-case",
@@ -372,6 +372,7 @@
       ],
       "price": 29.99,
       "compareAt": 0,
+      "priceCurrency": "TWD",
       "badge": "Popular",
       "description": "Rectangular pouch for pins and charms with soft ivory trim and an easy-access display panel.",
       "details": [
@@ -387,8 +388,7 @@
       },
       "imageUrl": "",
       "images": [],
-      "videoUrl": "",
-      "priceCurrency": "TWD"
+      "videoUrl": ""
     },
     {
       "id": "noir-cat-window",
@@ -399,6 +399,7 @@
       ],
       "price": 45,
       "compareAt": 0,
+      "priceCurrency": "TWD",
       "badge": "New",
       "description": "Black cat-ear display bag with a heart window and polished hardware details.",
       "details": [
@@ -414,8 +415,7 @@
       },
       "imageUrl": "",
       "images": [],
-      "videoUrl": "",
-      "priceCurrency": "TWD"
+      "videoUrl": ""
     },
     {
       "id": "pink-flat-panel",
@@ -424,6 +424,7 @@
       "tags": [],
       "price": 24,
       "compareAt": 0,
+      "priceCurrency": "TWD",
       "badge": "",
       "description": "Flat display pouch with stitched rows for arranging badges, acrylic charms, and small accessories.",
       "details": [
@@ -439,8 +440,7 @@
       },
       "imageUrl": "",
       "images": [],
-      "videoUrl": "",
-      "priceCurrency": "TWD"
+      "videoUrl": ""
     }
   ],
   "footer": {
