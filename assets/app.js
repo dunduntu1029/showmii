@@ -20,11 +20,35 @@
     query: "",
     drawerQuery: "",
     menuOpen: false,
+    categoryExpanded: false,
     adminOpen: false,
     adminTab: "quick",
     selectedProductId: "",
     contactProductId: ""
   };
+
+  const PRODUCT_STATUS_CODES = ["none", "new", "popular", "bestSeller", "preorder", "limited", "sale", "soldout", "custom"];
+
+  function productStatusCode(value) {
+    return PRODUCT_STATUS_CODES.includes(value) ? value : "none";
+  }
+
+  function inferProductStatus(product = {}) {
+    const tagText = Array.isArray(product.tags) ? product.tags.join(" ") : String(product.tags || "");
+    const text = [product.status, product.badge, tagText]
+      .filter(Boolean)
+      .join(" ")
+      .toLowerCase();
+    const hasAny = (needles) => needles.some((item) => text.includes(String(item).toLowerCase()));
+    if (hasAny(["soldout", "sold-out", "\u552e\u5b8c", "\u5b8c\u552e"])) return "soldout";
+    if (hasAny(["preorder", "pre-order", "\u9810\u8cfc", "\u9884\u8d2d"])) return "preorder";
+    if (hasAny(["best", "bestseller", "best-seller", "\u71b1\u8ce3", "\u70ed\u5356", "\u4eba\u6c23", "\u4eba\u6c14"])) return "bestSeller";
+    if (hasAny(["popular", "hot", "\u71b1\u9580", "\u70ed\u95e8"])) return "popular";
+    if (hasAny(["limited", "\u9650\u91cf"])) return "limited";
+    if (hasAny(["sale", "discount", "\u6298\u6263", "\u7279\u50f9", "\u7279\u4ef7"])) return "sale";
+    if (hasAny(["new", "\u65b0\u54c1", "\u6700\u65b0"])) return "new";
+    return product.badge ? "custom" : "none";
+  }
 
   let site = normalizeSite(DEFAULT_SITE);
   let cart = loadCart();
@@ -77,6 +101,10 @@
     if (!next.admin.passcode) next.admin.passcode = "showmii-admin";
     next.brand = { ...clone(DEFAULT_SITE.brand), ...(data?.brand || {}) };
     next.theme = { ...clone(DEFAULT_SITE.theme), ...(data?.theme || {}) };
+    next.theme.backdropMode = data?.theme?.backdropMode || next.theme.backdropMode || "soft";
+    next.theme.backdropColor = data?.theme?.backdropColor || next.theme.backdropColor || next.theme.background || "#fff8fb";
+    next.theme.backdropImageUrl = data?.theme?.backdropImageUrl || next.theme.backdropImageUrl || "";
+    next.theme.backdropImageOpacity = data?.theme?.backdropImageOpacity || next.theme.backdropImageOpacity || "70";
     next.layout = { ...clone(DEFAULT_SITE.layout), ...(data?.layout || {}) };
     next.hero = { ...clone(DEFAULT_SITE.hero), ...(data?.hero || {}) };
     next.footer = { ...clone(DEFAULT_SITE.footer), ...(data?.footer || {}) };
@@ -116,6 +144,8 @@
       price: Number(product.price) || 0,
       compareAt: Number(product.compareAt) || 0,
       priceCurrency: moneyCode(product.priceCurrency || product.currency || "TWD"),
+      status: productStatusCode(product.status || inferProductStatus(product)),
+      expectedExpiryDate: product.expectedExpiryDate || product.expiryDate || "",
       badge: product.badge || "",
       description: product.description || "",
       details: Array.isArray(product.details) ? product.details : stringList(product.details),
@@ -213,7 +243,7 @@
   }
 
   function contentPack(code = currentLanguage()) {
-    return code === "zh-Hant" ? {} : languagePack(code);
+    return languagePack(code);
   }
 
   function deepGet(source, path) {
@@ -282,6 +312,13 @@
     root.style.setProperty("--desktop-columns", site.layout.desktopColumns || 4);
     root.style.setProperty("--tablet-columns", site.layout.tabletColumns || 3);
     root.style.setProperty("--mobile-columns", site.layout.mobileColumns || 2);
+    const backdropModes = new Set(["soft", "plain", "grid", "image"]);
+    const backdropImage = safeUrl(site.theme.backdropImageUrl || "");
+    const backdropMode = backdropModes.has(site.theme.backdropMode) ? site.theme.backdropMode : "soft";
+    root.dataset.backdropMode = backdropMode === "image" && !backdropImage ? "soft" : backdropMode;
+    root.style.setProperty("--backdrop-color", site.theme.backdropColor || site.theme.background || "#fff8fb");
+    root.style.setProperty("--backdrop-image", backdropImage ? `url("${backdropImage.replaceAll('"', "%22")}")` : "none");
+    root.style.setProperty("--backdrop-image-opacity", Math.max(0, Math.min(1, Number(site.theme.backdropImageOpacity || 70) / 100)));
   }
 
   function kebab(value) {
@@ -345,11 +382,27 @@
     if (menuButton) menuButton.setAttribute("aria-expanded", String(state.menuOpen));
   }
 
+  function categoryDisplayLimit() {
+    return window.matchMedia("(max-width: 760px)").matches ? 4 : 8;
+  }
+
   function renderCategories() {
     const region = $('[data-region="categories"]');
     if (!region) return;
     region.innerHTML = "";
-    getCategories().forEach((category) => {
+    const categories = getCategories();
+    const limit = categoryDisplayLimit();
+    const shouldCollapse = categories.length > limit;
+    let visibleCategories = categories;
+    if (shouldCollapse && !state.categoryExpanded) {
+      visibleCategories = categories.slice(0, limit);
+      const selected = categories.find((category) => category.id === state.category);
+      if (selected && !visibleCategories.some((category) => category.id === selected.id)) {
+        visibleCategories = [...visibleCategories.slice(0, Math.max(0, limit - 1)), selected];
+      }
+    }
+
+    visibleCategories.forEach((category) => {
       const button = document.createElement("button");
       button.type = "button";
       button.className = "filter-button";
@@ -358,9 +411,23 @@
       button.classList.toggle("is-active", state.category === category.id);
       const count = productMatchesCategory(category.id).length;
       const view = localizedCategory(category);
-      button.innerHTML = `<span>${escapeHtml(view.name)}</span><strong>${count}</strong>`;
+      const hint = view.description || ui("categoryTileHint");
+      const initial = String(view.name || "S").trim().slice(0, 1).toUpperCase();
+      button.innerHTML = `<span class="filter-icon">${escapeHtml(initial)}</span><span class="filter-copy"><span>${escapeHtml(view.name)}</span><small>${escapeHtml(hint)}</small></span><strong>${count}</strong>`;
       region.append(button);
     });
+
+    if (shouldCollapse) {
+      const remaining = Math.max(0, categories.length - visibleCategories.length);
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "filter-button filter-more";
+      button.dataset.action = "toggle-categories";
+      const label = state.categoryExpanded ? ui("collapseCategories") : ui("showMoreCategories");
+      const count = state.categoryExpanded ? categories.length : `+${remaining}`;
+      button.innerHTML = `<span class="filter-icon">${state.categoryExpanded ? "-" : "+"}</span><span class="filter-copy"><span>${escapeHtml(label)}</span><small>${escapeHtml(ui("categoryMoreHint"))}</small></span><strong>${escapeHtml(count)}</strong>`;
+      region.append(button);
+    }
   }
 
   function renderProducts() {
@@ -407,10 +474,11 @@
         mediaCount.textContent = `${mediaTotal} ${ui("moreImages")}`;
         image.append(mediaCount);
       }
-      if (view.badge) {
+      const badgeText = productBadgeText(product, view);
+      if (badgeText) {
         const badge = document.createElement("span");
         badge.className = "product-badge";
-        badge.textContent = view.badge;
+        badge.textContent = badgeText;
         image.append(badge);
       }
 
@@ -427,10 +495,18 @@
       actions.className = "card-actions";
       actions.innerHTML = `
         <button type="button" data-action="quick-view" data-product="${escapeHtml(product.id)}">${escapeHtml(ui("details"))}</button>
-        <button type="button" data-action="contact-product" data-product="${escapeHtml(product.id)}">${escapeHtml(ui("contactToBuy"))}</button>
+        <button type="button" data-action="add-cart" data-product="${escapeHtml(product.id)}">${escapeHtml(ui("addToCart"))}</button>
       `;
 
-      info.append(title, price, actions);
+      info.append(title, price);
+      const expiryText = productExpiryLine(product);
+      if (expiryText) {
+        const expiry = document.createElement("p");
+        expiry.className = "product-expiry";
+        expiry.textContent = expiryText;
+        info.append(expiry);
+      }
+      info.append(actions);
       card.append(image, info);
       region.append(card);
     });
@@ -481,7 +557,7 @@
           ${channels.map((channel) => {
             const href = safeUrl(channel.url) || "#";
             const attrs = href !== "#" ? 'target="_blank" rel="noopener noreferrer"' : "";
-            return `<a href="${escapeHtml(href)}" ${attrs}><strong>${escapeHtml(channel.label || "Contact")}</strong><span>${escapeHtml(channel.note || href)}</span></a>`;
+            return `<a href="${escapeHtml(href)}" ${attrs}><strong>${escapeHtml(channel.label || ui("contactLinkFallback"))}</strong><span>${escapeHtml(channel.note || href)}</span></a>`;
           }).join("") || `<span class="empty-inline">${escapeHtml(ui("noContact"))}</span>`}
         </div>
       </article>
@@ -498,9 +574,14 @@
 
   function productMatchesCategory(categoryId) {
     if (categoryId === "all") return getProducts();
-    return getProducts().filter(
-      (product) => product.category === categoryId || product.tags.includes(categoryId)
-    );
+    return getProducts().filter((product) => {
+      const tags = Array.isArray(product.tags) ? product.tags : [];
+      const status = productStatusCode(product.status || inferProductStatus(product));
+      const directMatch = product.category === categoryId || tags.includes(categoryId);
+      if (categoryId === "popular") return directMatch || status === "popular" || status === "bestSeller";
+      if (categoryId === "new") return directMatch || status === "new";
+      return directMatch;
+    });
   }
 
   function getVisibleProducts() {
@@ -602,6 +683,44 @@
     return roundMoney(currencyFromBase(product?.[field] || 0, productInputCurrency(product)));
   }
 
+  function statusLabel(code) {
+    return ui(`status_${productStatusCode(code)}`);
+  }
+
+  function productBadgeText(product, view = localizedProduct(product)) {
+    const status = productStatusCode(product.status || inferProductStatus(product));
+    if (status === "none") return "";
+    if (status === "custom") return view?.badge || product.badge || "";
+    return statusLabel(status);
+  }
+
+  function syncProductStatusTags(product) {
+    const status = productStatusCode(product.status || inferProductStatus(product));
+    const reserved = new Set(["new", "popular", "preorder", "limited", "sale", "soldout"]);
+    const tags = Array.isArray(product.tags) ? product.tags : stringList(product.tags);
+    product.tags = tags.map(slug).filter((tag) => tag && !reserved.has(tag));
+    if (status === "new") product.tags.push("new");
+    if (status === "popular" || status === "bestSeller") product.tags.push("popular");
+    if (status === "preorder") product.tags.push("preorder");
+    if (status === "limited") product.tags.push("limited");
+    if (status === "sale") product.tags.push("sale");
+    if (status === "soldout") product.tags.push("soldout");
+    product.tags = [...new Set(product.tags)];
+  }
+
+  function formatDisplayDate(value) {
+    if (!value) return "";
+    const text = String(value).split("T")[0];
+    const parts = text.split("-");
+    if (parts.length === 3 && parts.every(Boolean)) return `${parts[0]}/${parts[1]}/${parts[2]}`;
+    return text;
+  }
+
+  function productExpiryLine(product) {
+    const date = formatDisplayDate(product.expectedExpiryDate || product.expiryDate);
+    return date ? `${ui("expectedExpiryDate")}: ${date}` : "";
+  }
+
   function addToCart(id) {
     const product = findProduct(id);
     if (!product) return;
@@ -609,7 +728,7 @@
     if (existing) existing.qty += 1;
     else cart.push({ id, qty: 1 });
     persistCart();
-    toast(`${product.name} 已加入詢問清單。`);
+    toast(`${localizedProduct(product).name} ${ui("cartAdded")}`);
   }
 
   function changeCart(id, delta) {
@@ -623,6 +742,45 @@
   function renderCartCount() {
     const count = cart.reduce((total, item) => total + Number(item.qty || 0), 0);
     setText("cart-count", count);
+  }
+
+  function cartSummaryText() {
+    if (!cart.length) return "";
+    const lines = cart
+      .map((entry, index) => {
+        const product = findProduct(entry.id);
+        if (!product) return "";
+        const view = localizedProduct(product);
+        return `${index + 1}. ${view.name} x ${entry.qty} - ${formatPrice(product.price * entry.qty)}`;
+      })
+      .filter(Boolean);
+    const total = cart.reduce((sum, entry) => {
+      const product = findProduct(entry.id);
+      return product ? sum + product.price * entry.qty : sum;
+    }, 0);
+    return [`${ui("copyInquiryIntro")}`, ...lines, `${ui("copyInquiryTotal")} ${formatPrice(total)}`].join("\n");
+  }
+
+  async function copyCartSummary() {
+    const text = cartSummaryText();
+    if (!text) {
+      toast(ui("cartCopyEmpty"));
+      return;
+    }
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch {
+      const textarea = document.createElement("textarea");
+      textarea.value = text;
+      textarea.setAttribute("readonly", "");
+      textarea.style.position = "fixed";
+      textarea.style.opacity = "0";
+      document.body.append(textarea);
+      textarea.select();
+      document.execCommand("copy");
+      textarea.remove();
+    }
+    toast(ui("cartCopied"));
   }
 
   function renderCart() {
@@ -642,6 +800,7 @@
         const product = findProduct(entry.id);
         if (!product) return;
         sum += product.price * entry.qty;
+        const view = localizedProduct(product);
         const item = document.createElement("article");
         item.className = "cart-item";
         const thumb = document.createElement("div");
@@ -709,7 +868,7 @@
       setProductImage(thumb, product);
       const copy = document.createElement("div");
       copy.innerHTML = `
-        <h3>${escapeHtml(product.name)}</h3>
+        <h3>${escapeHtml(view.name)}</h3>
         <p>${formatPrice(product.price)}</p>
         <button class="admin-small" type="button" data-action="quick-view" data-product="${escapeHtml(
           product.id
@@ -733,7 +892,7 @@
       .filter(Boolean)
       .map((line, index) => {
         const [label, url, note] = line.split("|").map((part) => part.trim());
-        return { id: slug(label || `contact-${index + 1}`), label: label || `Contact ${index + 1}`, url: url || "#", note: note || "" };
+        return { id: slug(label || `contact-${index + 1}`), label: label || `${ui("contactLinkFallback")} ${index + 1}`, url: url || "#", note: note || "" };
       });
   }
 
@@ -777,7 +936,7 @@
         link.target = "_blank";
         link.rel = "noopener noreferrer";
       }
-      link.innerHTML = `<strong>${escapeHtml(channel.label || "Contact")}</strong><span>${escapeHtml(channel.note || href)}</span>`;
+      link.innerHTML = `<strong>${escapeHtml(channel.label || ui("contactLinkFallback"))}</strong><span>${escapeHtml(channel.note || href)}</span>`;
       region.append(link);
     });
   }
@@ -840,14 +999,15 @@
       <ul class="detail-list">
         ${(view.details || []).map((detail) => `<li>${escapeHtml(detail)}</li>`).join("")}
       </ul>
+      ${productExpiryLine(product) ? `<p class="detail-expiry">${escapeHtml(productExpiryLine(product))}</p>` : ""}
       <p>${product.stock > 0 ? `${product.stock} ${ui("stockLine")}` : ui("outOfStock")}</p>
       <section class="quick-buy-note">
         <h3>${escapeHtml(tx("purchase.title", site.purchase?.title || ui("purchaseTabMethod")))}</h3>
         <p>${escapeHtml(tx("purchase.method", site.purchase?.method || ""))}</p>
       </section>
       <div class="quick-actions">
-        <button class="primary-button" type="button" data-action="contact-product" data-product="${escapeHtml(product.id)}">${escapeHtml(ui("contactToBuy"))}</button>
-        <a class="secondary-button" href="#purchase-info">${escapeHtml(ui("purchaseTabMethod"))}</a>
+        <button class="primary-button" type="button" data-action="add-cart" data-product="${escapeHtml(product.id)}">${escapeHtml(ui("addToCart"))}</button>
+        <button class="secondary-button" type="button" data-action="open-cart">${escapeHtml(ui("openInquiryList"))}</button>
       </div>
     `;
     wrap.append(media, copy);
@@ -1010,8 +1170,25 @@
     `;
   }
 
+  function backdropModeSelect() {
+    const modes = [
+      ["soft", "\u67d4\u9727\u80cc\u677f"],
+      ["plain", "\u7d14\u8272\u80cc\u677f"],
+      ["grid", "\u683c\u7d0b\u80cc\u677f"],
+      ["image", "\u5716\u7247\u80cc\u677f"]
+    ];
+    return `
+      <label>
+        <span>\u80cc\u677f\u6a23\u5f0f</span>
+        <select data-admin-path="theme.backdropMode">
+          ${modes.map(([id, label]) => `<option value="${id}" ${site.theme.backdropMode === id ? "selected" : ""}>${label}</option>`).join("")}
+        </select>
+      </label>
+    `;
+  }
+
   function renderSettingsAdmin() {
-    const themeLabels = { background: "背景色", surface: "卡片色", text: "文字色", muted: "輔助文字", primary: "主色", accent: "輔色", highlight: "亮點色", border: "線條色" };
+    const themeLabels = { background: "\u80cc\u666f\u8272", surface: "\u5361\u7247\u8272", text: "\u6587\u5b57\u8272", muted: "\u8f14\u52a9\u6587\u5b57", primary: "\u4e3b\u8272", accent: "\u8f14\u8272", highlight: "\u4eae\u9ede\u8272", border: "\u7dda\u689d\u8272", backdropColor: "\u80cc\u677f\u5e95\u8272" };
     const colorFields = Object.entries(site.theme)
       .filter(([, value]) => /^#[0-9a-f]{3,8}$/i.test(String(value)))
       .map(([key, value]) => `
@@ -1048,7 +1225,17 @@
           ${textarea("商品區說明", "layout.collectionDescription", site.layout.collectionDescription)}
         </section>
         <section class="admin-section">
-          <h3>網站色彩</h3>
+          <h3>\u7db2\u7ad9\u80cc\u677f</h3>
+          <div class="admin-grid">
+            ${backdropModeSelect()}
+            ${input("\u80cc\u677f\u5e95\u8272", "theme.backdropColor", site.theme.backdropColor || site.theme.background || "#fff8fb", "color")}
+            ${input("\u80cc\u677f\u5716\u7247\u7db2\u5740", "theme.backdropImageUrl", site.theme.backdropImageUrl || "")}
+            ${input("\u5716\u7247\u986f\u793a\u5f37\u5ea6\uff080-100\uff09", "theme.backdropImageOpacity", site.theme.backdropImageOpacity || 70, "number", 0, 100)}
+          </div>
+          <p class="admin-note">\u9078\u300c\u5716\u7247\u80cc\u677f\u300d\u6642\uff0c\u586b\u5165 https \u5716\u7247\u7db2\u5740\u5373\u53ef\u66ff\u63db\u7db2\u7ad9\u80cc\u677f\u3002\u5206\u985e\u904e\u591a\u6642\u524d\u53f0\u6703\u81ea\u52d5\u6536\u5408\u3002</p>
+        </section>
+        <section class="admin-section">
+          <h3>\u7db2\u7ad9\u8272\u5f69</h3>
           <div class="admin-grid">${colorFields}</div>
         </section>
       </form>
@@ -1148,6 +1335,7 @@
     const selected = findProduct(state.selectedProductId) || site.products[0];
     state.selectedProductId = selected.id;
     const index = site.products.findIndex((product) => product.id === selected.id);
+    const selectedView = localizedProduct(selected);
     return `
       <div class="admin-form">
         <section class="admin-section">
@@ -1157,12 +1345,12 @@
               <span>選擇商品</span>
               <select data-action="admin-select-product">
                 ${getProducts()
-                  .map(
-                    (product) =>
-                      `<option value="${escapeHtml(product.id)}" ${
-                        product.id === selected.id ? "selected" : ""
-                      }>${escapeHtml(product.name)}</option>`
-                  )
+                  .map((product) => {
+                    const productView = localizedProduct(product);
+                    return `<option value="${escapeHtml(product.id)}" ${
+                      product.id === selected.id ? "selected" : ""
+                    }>${escapeHtml(productView.name)}</option>`;
+                  })
                   .join("")}
               </select>
             </label>
@@ -1171,12 +1359,12 @@
               <select data-product-index="${index}" data-product-field="category">
                 ${getCategories()
                   .filter((category) => category.id !== "all")
-                  .map(
-                    (category) =>
-                      `<option value="${escapeHtml(category.id)}" ${
-                        selected.category === category.id ? "selected" : ""
-                      }>${escapeHtml(category.name)}</option>`
-                  )
+                  .map((category) => {
+                    const categoryView = localizedCategory(category);
+                    return `<option value="${escapeHtml(category.id)}" ${
+                      selected.category === category.id ? "selected" : ""
+                    }>${escapeHtml(categoryView.name)}</option>`;
+                  })
                   .join("")}
               </select>
             </label>
@@ -1192,12 +1380,14 @@
         <section class="admin-section">
           <h3>商品內容</h3>
           <div class="admin-grid">
-            ${productInput("商品名稱", index, "name", selected.name)}
+            ${productInput("\u5546\u54c1\u540d\u7a31", index, "name", selectedView.name)}
             ${productInput("ID", index, "id", selected.id)}
+            ${productStatusSelect("\u5546\u54c1\u72c0\u614b\u6a19\u7c64", index, selected)}
+            ${productInput("\u9810\u8a08\u5230\u671f\u65e5", index, "expectedExpiryDate", selected.expectedExpiryDate || "", "date")}
             ${productCurrencySelect("價格輸入幣別", index, selected)}
             ${productInput("售價（依上方幣別輸入）", index, "price", productCurrencyAmount(selected, "price"), "number", 0, "0.01")}
             ${productInput("原價（依上方幣別輸入）", index, "compareAt", productCurrencyAmount(selected, "compareAt"), "number", 0, "0.01")}
-            ${productInput("標籤", index, "badge", selected.badge)}
+            ${productInput("\u81ea\u8a02\u6a19\u7c64\u6587\u5b57", index, "badge", selectedView.badge || selected.badge)}
             ${productInput("庫存", index, "stock", selected.stock, "number", 0)}
             ${productInput("排序", index, "order", selected.order, "number", 0)}
             ${productInput("主圖網址", index, "imageUrl", selected.imageUrl)}
@@ -1208,8 +1398,8 @@
           ${productCurrencyPreview(selected)}
 
           ${productTextarea("標籤 ID，用逗號分隔", index, "tags", selected.tags.join(", "))}
-          ${productTextarea("商品說明", index, "description", selected.description)}
-          ${productTextarea("商品細節，一行一個", index, "details", selected.details.join("\\n"))}
+          ${productTextarea("\u5546\u54c1\u8aaa\u660e", index, "description", selectedView.description)}
+          ${productTextarea("\u5546\u54c1\u7d30\u7bc0\uff0c\u4e00\u884c\u4e00\u500b", index, "details", (selectedView.details || selected.details).join("\\n"))}
           ${productTextarea("更多圖片網址，一行一張", index, "images", (selected.images || []).join("\\n"))}
         </section>
       </div>
@@ -1291,6 +1481,20 @@
         <input type="${type}" value="${escapeHtml(value)}" data-product-index="${index}" data-product-field="${field}" ${
           min !== "" ? `min="${min}"` : ""
         } ${step !== "" ? `step="${step}"` : ""} />
+      </label>
+    `;
+  }
+
+  function productStatusSelect(label, index, product) {
+    const selected = productStatusCode(product.status || inferProductStatus(product));
+    return `
+      <label>
+        <span>${escapeHtml(label)}</span>
+        <select data-product-index="${index}" data-product-field="status">
+          ${PRODUCT_STATUS_CODES.map(
+            (code) => `<option value="${code}" ${selected === code ? "selected" : ""}>${escapeHtml(statusLabel(code))}</option>`
+          ).join("")}
+        </select>
       </label>
     `;
   }
@@ -1486,16 +1690,46 @@
     else category[field] = value;
   }
 
+  function ensureLocalizedProduct(product) {
+    const code = currentLanguage();
+    site.i18n = site.i18n || {};
+    site.i18n[code] = site.i18n[code] || {};
+    site.i18n[code].products = site.i18n[code].products || {};
+    site.i18n[code].products[product.id] = site.i18n[code].products[product.id] || {};
+    return site.i18n[code].products[product.id];
+  }
+
+  function syncLocalizedProductField(product, field, value) {
+    if (!["name", "badge", "description", "details"].includes(field)) return;
+    const target = ensureLocalizedProduct(product);
+    target[field] = Array.isArray(value) ? [...value] : value;
+  }
+
+  function moveLocalizedProductKey(oldId, newId) {
+    Object.values(site.i18n || {}).forEach((pack) => {
+      if (!pack.products || !pack.products[oldId]) return;
+      pack.products[newId] = { ...(pack.products[oldId] || {}), ...(pack.products[newId] || {}) };
+      delete pack.products[oldId];
+    });
+  }
+
   function updateProduct(index, field, value) {
     const product = site.products[index];
     if (!product) return;
     if (field === "id") {
       const oldId = product.id;
-      product.id = slug(value);
+      const nextId = slug(value);
+      product.id = nextId;
+      moveLocalizedProductKey(oldId, nextId);
       state.selectedProductId = product.id;
       cart.forEach((item) => {
         if (item.id === oldId) item.id = product.id;
       });
+      return;
+    }
+    if (field === "status") {
+      product.status = productStatusCode(value);
+      syncProductStatusTags(product);
       return;
     }
     if (field === "priceCurrency") {
@@ -1516,6 +1750,7 @@
     }
     if (field === "details") {
       product.details = stringList(value);
+      syncLocalizedProductField(product, field, product.details);
       return;
     }
     if (field === "images") {
@@ -1523,6 +1758,7 @@
       return;
     }
     product[field] = value;
+    syncLocalizedProductField(product, field, value);
   }
 
   function updateSprite(index, field, value) {
@@ -1555,7 +1791,9 @@
       price: roundMoney(baseFromCurrency(29, currency)),
       compareAt: 0,
       priceCurrency: currency,
-      badge: "新品",
+      status: "new",
+      expectedExpiryDate: "",
+      badge: "\u65b0\u54c1",
       description: "可編輯商品說明。",
       details: ["可編輯商品細節"],
       stock: 10,
@@ -1645,6 +1883,10 @@
         renderAll();
       }
     }
+    if (action === "toggle-categories") {
+      state.categoryExpanded = !state.categoryExpanded;
+      renderCategories();
+    }
     if (action === "set-category") {
       state.category = target.dataset.category;
       state.query = "";
@@ -1656,17 +1898,18 @@
       const main = $(".quick-media", target.closest("dialog"));
       if (product && main) {
         setProductImage(main, product, target.dataset.image);
-        $(".quick-thumb", target.closest("dialog")).forEach((button) => button.classList.toggle("is-active", button === target));
+        $$(".quick-thumb", target.closest("dialog")).forEach((button) => button.classList.toggle("is-active", button === target));
       }
     }
     if (action === "contact-product") openContact(productId);
-    if (action === "add-cart") openContact(productId);
+    if (action === "add-cart") addToCart(productId);
     if (action === "cart-inc") changeCart(productId, 1);
     if (action === "cart-dec") changeCart(productId, -1);
     if (action === "cart-remove") {
       cart = cart.filter((item) => item.id !== productId);
       persistCart();
     }
+    if (action === "copy-cart") copyCartSummary();
     if (action === "checkout-contact") openContact();
     if (action === "admin-close") closeAdmin();
     if (action === "admin-logout") {
@@ -1808,6 +2051,10 @@
       });
       reader.readAsText(target.files[0]);
     }
+  });
+
+  window.addEventListener("resize", () => {
+    renderCategories();
   });
 
   document.addEventListener("submit", (event) => {

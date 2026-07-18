@@ -19,7 +19,11 @@ window.CAILUCKY_DEFAULT_SITE = {
     "primary": "#d95f82",
     "accent": "#70b7aa",
     "highlight": "#f4c76b",
-    "border": "#eaded7"
+    "border": "#eaded7",
+    "backdropMode": "soft",
+    "backdropColor": "#fffaf7",
+    "backdropImageUrl": "",
+    "backdropImageOpacity": "70"
   },
   "layout": {
     "desktopColumns": 4,
@@ -126,7 +130,6 @@ window.CAILUCKY_DEFAULT_SITE = {
       "name": "Rose Heart Mini Backpack",
       "category": "ita-bags",
       "tags": [
-        "new",
         "popular"
       ],
       "price": 39.99,
@@ -147,7 +150,9 @@ window.CAILUCKY_DEFAULT_SITE = {
       "imageUrl": "",
       "images": [],
       "videoUrl": "",
-      "priceCurrency": "TWD"
+      "priceCurrency": "TWD",
+      "status": "popular",
+      "expectedExpiryDate": ""
     },
     {
       "id": "mint-showcase-tote",
@@ -174,14 +179,16 @@ window.CAILUCKY_DEFAULT_SITE = {
       "imageUrl": "",
       "images": [],
       "videoUrl": "",
-      "priceCurrency": "TWD"
+      "priceCurrency": "TWD",
+      "status": "popular",
+      "expectedExpiryDate": ""
     },
     {
       "id": "lavender-lace-crossbody",
       "name": "Lavender Lace Crossbody",
       "category": "ita-bags",
       "tags": [
-        "new"
+        "sale"
       ],
       "price": 35.5,
       "compareAt": 44,
@@ -201,7 +208,9 @@ window.CAILUCKY_DEFAULT_SITE = {
       "imageUrl": "",
       "images": [],
       "videoUrl": "",
-      "priceCurrency": "TWD"
+      "priceCurrency": "TWD",
+      "status": "sale",
+      "expectedExpiryDate": ""
     },
     {
       "id": "cream-round-window",
@@ -228,7 +237,9 @@ window.CAILUCKY_DEFAULT_SITE = {
       "imageUrl": "",
       "images": [],
       "videoUrl": "",
-      "priceCurrency": "TWD"
+      "priceCurrency": "TWD",
+      "status": "popular",
+      "expectedExpiryDate": ""
     },
     {
       "id": "black-heart-satchel",
@@ -255,7 +266,9 @@ window.CAILUCKY_DEFAULT_SITE = {
       "imageUrl": "",
       "images": [],
       "videoUrl": "",
-      "priceCurrency": "TWD"
+      "priceCurrency": "TWD",
+      "status": "bestSeller",
+      "expectedExpiryDate": ""
     },
     {
       "id": "coral-drawstring-pack",
@@ -282,7 +295,9 @@ window.CAILUCKY_DEFAULT_SITE = {
       "imageUrl": "",
       "images": [],
       "videoUrl": "",
-      "priceCurrency": "TWD"
+      "priceCurrency": "TWD",
+      "status": "new",
+      "expectedExpiryDate": ""
     },
     {
       "id": "sky-frame-crossbody",
@@ -307,7 +322,9 @@ window.CAILUCKY_DEFAULT_SITE = {
       "imageUrl": "",
       "images": [],
       "videoUrl": "",
-      "priceCurrency": "TWD"
+      "priceCurrency": "TWD",
+      "status": "none",
+      "expectedExpiryDate": ""
     },
     {
       "id": "graphite-grid-backpack",
@@ -334,7 +351,9 @@ window.CAILUCKY_DEFAULT_SITE = {
       "imageUrl": "",
       "images": [],
       "videoUrl": "",
-      "priceCurrency": "TWD"
+      "priceCurrency": "TWD",
+      "status": "popular",
+      "expectedExpiryDate": ""
     },
     {
       "id": "violet-heart-shoulder",
@@ -361,7 +380,9 @@ window.CAILUCKY_DEFAULT_SITE = {
       "imageUrl": "",
       "images": [],
       "videoUrl": "",
-      "priceCurrency": "TWD"
+      "priceCurrency": "TWD",
+      "status": "new",
+      "expectedExpiryDate": ""
     },
     {
       "id": "ivory-collector-case",
@@ -388,7 +409,9 @@ window.CAILUCKY_DEFAULT_SITE = {
       "imageUrl": "",
       "images": [],
       "videoUrl": "",
-      "priceCurrency": "TWD"
+      "priceCurrency": "TWD",
+      "status": "popular",
+      "expectedExpiryDate": ""
     },
     {
       "id": "noir-cat-window",
@@ -415,7 +438,9 @@ window.CAILUCKY_DEFAULT_SITE = {
       "imageUrl": "",
       "images": [],
       "videoUrl": "",
-      "priceCurrency": "TWD"
+      "priceCurrency": "TWD",
+      "status": "new",
+      "expectedExpiryDate": ""
     },
     {
       "id": "pink-flat-panel",
@@ -440,7 +465,9 @@ window.CAILUCKY_DEFAULT_SITE = {
       "imageUrl": "",
       "images": [],
       "videoUrl": "",
-      "priceCurrency": "TWD"
+      "priceCurrency": "TWD",
+      "status": "none",
+      "expectedExpiryDate": ""
     }
   ],
   "footer": {
@@ -542,7 +569,34 @@ window.CAILUCKY_DEFAULT_SITE = {
         "videoLink": "影片連結",
         "openVideo": "開啟影片",
         "noMedia": "尚未新增更多圖片或影片。",
-        "adminLogin": "管理員登入"
+        "adminLogin": "管理員登入",
+        "purchaseTabMethod": "購買方式",
+        "purchaseTabContact": "聯絡平台",
+        "contactLinkFallback": "聯絡方式",
+        "copyInquiryList": "複製詢問清單",
+        "copyInquiryIntro": "您好，我想詢問以下商品：",
+        "copyInquiryTotal": "預估合計：",
+        "cartCopied": "已複製詢問清單，可以直接貼給管理員。",
+        "cartCopyEmpty": "詢問清單還沒有商品。",
+        "cartAdded": "已加入詢問清單。",
+        "openInquiryList": "查看詢問清單",
+        "expectedExpiryDate": "預計到期日",
+        "status_none": "不顯示狀態",
+        "status_new": "新品",
+        "status_popular": "熱門",
+        "status_bestSeller": "熱賣",
+        "status_preorder": "預購",
+        "status_limited": "限量",
+        "status_sale": "折扣",
+        "status_soldout": "售完",
+        "status_custom": "自訂標籤",
+        "categoryBrowseKicker": "SHOP CATEGORY",
+        "categoryBrowseTitle": "依分類逛商品",
+        "categoryBrowseHint": "選一個分類，商品會立即更新。",
+        "categoryTileHint": "查看這個分類",
+        "showMoreCategories": "展開更多分類",
+        "collapseCategories": "收合分類",
+        "categoryMoreHint": "分類過多時會自動收合"
       },
       "announcement": "showmii 新品與熱門款陸續上架，歡迎截圖商品詢問現貨與預訂。",
       "brand": {
@@ -812,7 +866,34 @@ window.CAILUCKY_DEFAULT_SITE = {
         "videoLink": "影片链接",
         "openVideo": "打开影片",
         "noMedia": "尚未新增更多图片或影片。",
-        "adminLogin": "管理员登录"
+        "adminLogin": "管理员登录",
+        "purchaseTabMethod": "购买方式",
+        "purchaseTabContact": "联系平台",
+        "contactLinkFallback": "联系方式",
+        "copyInquiryList": "复制询问清单",
+        "copyInquiryIntro": "您好，我想询问以下商品：",
+        "copyInquiryTotal": "预估合计：",
+        "cartCopied": "已复制询问清单，可以直接贴给管理员。",
+        "cartCopyEmpty": "询问清单还没有商品。",
+        "cartAdded": "已加入询问清单。",
+        "openInquiryList": "查看询问清单",
+        "expectedExpiryDate": "预计到期日",
+        "status_none": "不显示状态",
+        "status_new": "新品",
+        "status_popular": "热门",
+        "status_bestSeller": "热卖",
+        "status_preorder": "预购",
+        "status_limited": "限量",
+        "status_sale": "折扣",
+        "status_soldout": "售完",
+        "status_custom": "自定义标签",
+        "categoryBrowseKicker": "SHOP CATEGORY",
+        "categoryBrowseTitle": "按分类逛商品",
+        "categoryBrowseHint": "选择一个分类，商品会立即更新。",
+        "categoryTileHint": "查看这个分类",
+        "showMoreCategories": "展开更多分类",
+        "collapseCategories": "收合分类",
+        "categoryMoreHint": "分类过多时会自动收合"
       },
       "announcement": "showmii 新品与热门款陆续上架，欢迎截图商品询问现货与预订。",
       "brand": {
@@ -1082,7 +1163,34 @@ window.CAILUCKY_DEFAULT_SITE = {
         "videoLink": "Video link",
         "openVideo": "Open video",
         "noMedia": "No extra images or video yet.",
-        "adminLogin": "Admin Login"
+        "adminLogin": "Admin Login",
+        "purchaseTabMethod": "How to buy",
+        "purchaseTabContact": "Contact platforms",
+        "contactLinkFallback": "Contact method",
+        "copyInquiryList": "Copy inquiry list",
+        "copyInquiryIntro": "Hello, I would like to ask about these products:",
+        "copyInquiryTotal": "Estimated total:",
+        "cartCopied": "Inquiry list copied. You can paste it to the admin.",
+        "cartCopyEmpty": "Your inquiry list is still empty.",
+        "cartAdded": "added to inquiry list.",
+        "openInquiryList": "View inquiry list",
+        "expectedExpiryDate": "Estimated expiry date",
+        "status_none": "No status label",
+        "status_new": "New",
+        "status_popular": "Popular",
+        "status_bestSeller": "Best seller",
+        "status_preorder": "Preorder",
+        "status_limited": "Limited",
+        "status_sale": "Sale",
+        "status_soldout": "Sold out",
+        "status_custom": "Custom label",
+        "categoryBrowseKicker": "SHOP CATEGORY",
+        "categoryBrowseTitle": "Shop by category",
+        "categoryBrowseHint": "Choose a category and the products update instantly.",
+        "categoryTileHint": "View this category",
+        "showMoreCategories": "Show more categories",
+        "collapseCategories": "Collapse categories",
+        "categoryMoreHint": "Extra categories collapse automatically"
       },
       "announcement": "New and popular showmii picks are arriving. Send a screenshot to ask about stock or preorders.",
       "brand": {
