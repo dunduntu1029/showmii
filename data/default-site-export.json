@@ -19,7 +19,11 @@
     "primary": "#d95f82",
     "accent": "#70b7aa",
     "highlight": "#f4c76b",
-    "border": "#eaded7"
+    "border": "#eaded7",
+    "backdropMode": "soft",
+    "backdropColor": "#fffaf7",
+    "backdropImageUrl": "",
+    "backdropImageOpacity": "70"
   },
   "layout": {
     "desktopColumns": 4,
@@ -34,7 +38,7 @@
   },
   "announcement": "showmii 新品與熱門款陸續上架，歡迎截圖商品詢問現貨與預訂。",
   "hero": {
-    "eyebrow": "showmii selection",
+    "eyebrow": "showmii 精選",
     "title": "把喜歡的收藏，好好展示出來",
     "subtitle": "從透明展示包、收納配件到日常可愛小物，替你的收藏搭配乾淨、漂亮、好拍照的出門樣子。",
     "cta": "逛全部商品"
@@ -126,12 +130,10 @@
       "name": "Rose Heart Mini Backpack",
       "category": "ita-bags",
       "tags": [
-        "new",
         "popular"
       ],
       "price": 39.99,
       "compareAt": 49.99,
-      "priceCurrency": "TWD",
       "badge": "New",
       "description": "Compact pastel backpack with a heart display window, soft ruffles, and side pockets for daily essentials.",
       "details": [
@@ -147,7 +149,10 @@
       },
       "imageUrl": "",
       "images": [],
-      "videoUrl": ""
+      "videoUrl": "",
+      "priceCurrency": "TWD",
+      "status": "popular",
+      "expectedExpiryDate": ""
     },
     {
       "id": "mint-showcase-tote",
@@ -158,7 +163,6 @@
       ],
       "price": 42,
       "compareAt": 0,
-      "priceCurrency": "TWD",
       "badge": "Popular",
       "description": "Roomy mint tote with a rectangular clear panel and charm loops for a neat display layout.",
       "details": [
@@ -174,18 +178,20 @@
       },
       "imageUrl": "",
       "images": [],
-      "videoUrl": ""
+      "videoUrl": "",
+      "priceCurrency": "TWD",
+      "status": "popular",
+      "expectedExpiryDate": ""
     },
     {
       "id": "lavender-lace-crossbody",
       "name": "Lavender Lace Crossbody",
       "category": "ita-bags",
       "tags": [
-        "new"
+        "sale"
       ],
       "price": 35.5,
       "compareAt": 44,
-      "priceCurrency": "TWD",
       "badge": "Sale",
       "description": "Slim shoulder bag with lace-up side trim and a clear display window for a polished collection look.",
       "details": [
@@ -201,7 +207,10 @@
       },
       "imageUrl": "",
       "images": [],
-      "videoUrl": ""
+      "videoUrl": "",
+      "priceCurrency": "TWD",
+      "status": "sale",
+      "expectedExpiryDate": ""
     },
     {
       "id": "cream-round-window",
@@ -212,7 +221,6 @@
       ],
       "price": 47.99,
       "compareAt": 0,
-      "priceCurrency": "TWD",
       "badge": "Limited",
       "description": "Soft cream display bag with a round front window, bow detail, and structured compact body.",
       "details": [
@@ -228,7 +236,10 @@
       },
       "imageUrl": "",
       "images": [],
-      "videoUrl": ""
+      "videoUrl": "",
+      "priceCurrency": "TWD",
+      "status": "popular",
+      "expectedExpiryDate": ""
     },
     {
       "id": "black-heart-satchel",
@@ -239,7 +250,6 @@
       ],
       "price": 44.99,
       "compareAt": 52,
-      "priceCurrency": "TWD",
       "badge": "Best Seller",
       "description": "Glossy black satchel with a heart-shaped display pocket and refined bow accent.",
       "details": [
@@ -255,7 +265,10 @@
       },
       "imageUrl": "",
       "images": [],
-      "videoUrl": ""
+      "videoUrl": "",
+      "priceCurrency": "TWD",
+      "status": "bestSeller",
+      "expectedExpiryDate": ""
     },
     {
       "id": "coral-drawstring-pack",
@@ -266,7 +279,6 @@
       ],
       "price": 32,
       "compareAt": 0,
-      "priceCurrency": "TWD",
       "badge": "New",
       "description": "Soft drawstring display pack with rounded front window and flexible daily capacity.",
       "details": [
@@ -282,7 +294,10 @@
       },
       "imageUrl": "",
       "images": [],
-      "videoUrl": ""
+      "videoUrl": "",
+      "priceCurrency": "TWD",
+      "status": "new",
+      "expectedExpiryDate": ""
     },
     {
       "id": "sky-frame-crossbody",
@@ -291,7 +306,6 @@
       "tags": [],
       "price": 36.99,
       "compareAt": 0,
-      "priceCurrency": "TWD",
       "badge": "",
       "description": "Small sky-blue crossbody with a clear rectangular window and clean frame stitching.",
       "details": [
@@ -307,7 +321,10 @@
       },
       "imageUrl": "",
       "images": [],
-      "videoUrl": ""
+      "videoUrl": "",
+      "priceCurrency": "TWD",
+      "status": "none",
+      "expectedExpiryDate": ""
     },
     {
       "id": "graphite-grid-backpack",
@@ -318,7 +335,6 @@
       ],
       "price": 54,
       "compareAt": 0,
-      "priceCurrency": "TWD",
       "badge": "Popular",
       "description": "Dark structured backpack with a grid panel for badges, charms, and small plush accessories.",
       "details": [
@@ -334,7 +350,10 @@
       },
       "imageUrl": "",
       "images": [],
-      "videoUrl": ""
+      "videoUrl": "",
+      "priceCurrency": "TWD",
+      "status": "popular",
+      "expectedExpiryDate": ""
     },
     {
       "id": "violet-heart-shoulder",
@@ -345,7 +364,6 @@
       ],
       "price": 41.5,
       "compareAt": 48,
-      "priceCurrency": "TWD",
       "badge": "New",
       "description": "Heart-window shoulder bag in violet with bow trim and a soft rounded silhouette.",
       "details": [
@@ -361,7 +379,10 @@
       },
       "imageUrl": "",
       "images": [],
-      "videoUrl": ""
+      "videoUrl": "",
+      "priceCurrency": "TWD",
+      "status": "new",
+      "expectedExpiryDate": ""
     },
     {
       "id": "ivory-collector-case",
@@ -372,7 +393,6 @@
       ],
       "price": 29.99,
       "compareAt": 0,
-      "priceCurrency": "TWD",
       "badge": "Popular",
       "description": "Rectangular pouch for pins and charms with soft ivory trim and an easy-access display panel.",
       "details": [
@@ -388,7 +408,10 @@
       },
       "imageUrl": "",
       "images": [],
-      "videoUrl": ""
+      "videoUrl": "",
+      "priceCurrency": "TWD",
+      "status": "popular",
+      "expectedExpiryDate": ""
     },
     {
       "id": "noir-cat-window",
@@ -399,7 +422,6 @@
       ],
       "price": 45,
       "compareAt": 0,
-      "priceCurrency": "TWD",
       "badge": "New",
       "description": "Black cat-ear display bag with a heart window and polished hardware details.",
       "details": [
@@ -415,7 +437,10 @@
       },
       "imageUrl": "",
       "images": [],
-      "videoUrl": ""
+      "videoUrl": "",
+      "priceCurrency": "TWD",
+      "status": "new",
+      "expectedExpiryDate": ""
     },
     {
       "id": "pink-flat-panel",
@@ -424,7 +449,6 @@
       "tags": [],
       "price": 24,
       "compareAt": 0,
-      "priceCurrency": "TWD",
       "badge": "",
       "description": "Flat display pouch with stitched rows for arranging badges, acrylic charms, and small accessories.",
       "details": [
@@ -440,7 +464,10 @@
       },
       "imageUrl": "",
       "images": [],
-      "videoUrl": ""
+      "videoUrl": "",
+      "priceCurrency": "TWD",
+      "status": "none",
+      "expectedExpiryDate": ""
     }
   ],
   "footer": {
@@ -542,7 +569,61 @@
         "videoLink": "影片連結",
         "openVideo": "開啟影片",
         "noMedia": "尚未新增更多圖片或影片。",
-        "adminLogin": "管理員登入"
+        "adminLogin": "管理員登入",
+        "purchaseTabMethod": "購買方式",
+        "purchaseTabContact": "聯絡平台",
+        "contactLinkFallback": "聯絡方式",
+        "copyInquiryList": "複製詢問清單",
+        "copyInquiryIntro": "您好，我想詢問以下商品：",
+        "copyInquiryTotal": "預估合計：",
+        "cartCopied": "已複製詢問清單，可以直接貼給管理員。",
+        "cartCopyEmpty": "詢問清單還沒有商品。",
+        "cartAdded": "已加入詢問清單。",
+        "openInquiryList": "查看詢問清單",
+        "expectedExpiryDate": "預計到期日",
+        "status_none": "不顯示狀態",
+        "status_new": "新品",
+        "status_popular": "熱門",
+        "status_bestSeller": "熱賣",
+        "status_preorder": "預購",
+        "status_limited": "限量",
+        "status_sale": "折扣",
+        "status_soldout": "售完",
+        "status_custom": "自訂標籤",
+        "categoryBrowseKicker": "商品分類",
+        "categoryBrowseTitle": "依分類逛商品",
+        "categoryBrowseHint": "選一個分類，商品會立即更新。",
+        "categoryTileHint": "查看這個分類",
+        "showMoreCategories": "展開更多分類",
+        "collapseCategories": "收合分類",
+        "categoryMoreHint": "分類過多時會自動收合",
+        "openMenu": "開啟選單",
+        "mainNav": "主選單",
+        "productVisual": "商品視覺",
+        "productVisualAlt": "痛包與周邊商品系列",
+        "productBreadcrumb": "首頁 / 商品",
+        "purchaseBreadcrumb": "購買 / 聯繫",
+        "productCategories": "商品分類",
+        "servicePromise": "服務承諾",
+        "searchDialog": "搜尋視窗",
+        "closeSearch": "關閉搜尋",
+        "closeCart": "關閉詢問清單",
+        "closeContact": "關閉聯繫視窗",
+        "closeProductDetail": "關閉商品詳情",
+        "cartTotal": "合計",
+        "remove": "移除",
+        "allProducts": "全部商品",
+        "linkFallback": "連結",
+        "backToTop": "回頂部",
+        "quantity": "數量",
+        "increaseQuantity": "增加數量",
+        "decreaseQuantity": "減少數量",
+        "siteHeader": "網站頁首",
+        "username": "帳號",
+        "password": "密碼",
+        "cancel": "取消",
+        "login": "登入",
+        "adminPanel": "showmii 管理頁"
       },
       "announcement": "showmii 新品與熱門款陸續上架，歡迎截圖商品詢問現貨與預訂。",
       "brand": {
@@ -550,7 +631,7 @@
         "tagline": "展示包與日常小物選品"
       },
       "hero": {
-        "eyebrow": "showmii selection",
+        "eyebrow": "showmii 精選",
         "title": "把喜歡的收藏，好好展示出來",
         "subtitle": "從透明展示包、收納配件到日常可愛小物，替你的收藏搭配乾淨、漂亮、好拍照的出門樣子。",
         "cta": "逛全部商品"
@@ -812,7 +893,61 @@
         "videoLink": "影片链接",
         "openVideo": "打开影片",
         "noMedia": "尚未新增更多图片或影片。",
-        "adminLogin": "管理员登录"
+        "adminLogin": "管理员登录",
+        "purchaseTabMethod": "购买方式",
+        "purchaseTabContact": "联系平台",
+        "contactLinkFallback": "联系方式",
+        "copyInquiryList": "复制询问清单",
+        "copyInquiryIntro": "您好，我想询问以下商品：",
+        "copyInquiryTotal": "预估合计：",
+        "cartCopied": "已复制询问清单，可以直接贴给管理员。",
+        "cartCopyEmpty": "询问清单还没有商品。",
+        "cartAdded": "已加入询问清单。",
+        "openInquiryList": "查看询问清单",
+        "expectedExpiryDate": "预计到期日",
+        "status_none": "不显示状态",
+        "status_new": "新品",
+        "status_popular": "热门",
+        "status_bestSeller": "热卖",
+        "status_preorder": "预购",
+        "status_limited": "限量",
+        "status_sale": "折扣",
+        "status_soldout": "售完",
+        "status_custom": "自定义标签",
+        "categoryBrowseKicker": "商品分类",
+        "categoryBrowseTitle": "按分类逛商品",
+        "categoryBrowseHint": "选择一个分类，商品会立即更新。",
+        "categoryTileHint": "查看这个分类",
+        "showMoreCategories": "展开更多分类",
+        "collapseCategories": "收合分类",
+        "categoryMoreHint": "分类过多时会自动收合",
+        "openMenu": "打开菜单",
+        "mainNav": "主菜单",
+        "productVisual": "商品视觉",
+        "productVisualAlt": "痛包与周边商品系列",
+        "productBreadcrumb": "首页 / 商品",
+        "purchaseBreadcrumb": "购买 / 联系",
+        "productCategories": "商品分类",
+        "servicePromise": "服务承诺",
+        "searchDialog": "搜索视窗",
+        "closeSearch": "关闭搜索",
+        "closeCart": "关闭询问清单",
+        "closeContact": "关闭联系视窗",
+        "closeProductDetail": "关闭商品详情",
+        "cartTotal": "合计",
+        "remove": "移除",
+        "allProducts": "全部商品",
+        "linkFallback": "链接",
+        "backToTop": "回顶部",
+        "quantity": "数量",
+        "increaseQuantity": "增加数量",
+        "decreaseQuantity": "减少数量",
+        "siteHeader": "网站页首",
+        "username": "账号",
+        "password": "密码",
+        "cancel": "取消",
+        "login": "登录",
+        "adminPanel": "showmii 管理页"
       },
       "announcement": "showmii 新品与热门款陆续上架，欢迎截图商品询问现货与预订。",
       "brand": {
@@ -820,7 +955,7 @@
         "tagline": "展示包与日常小物选品"
       },
       "hero": {
-        "eyebrow": "showmii selection",
+        "eyebrow": "showmii 精选",
         "title": "把喜欢的收藏，好好展示出来",
         "subtitle": "从透明展示包、收纳配件到日常可爱小物，替你的收藏搭配干净、漂亮、好拍照的出门样子。",
         "cta": "逛全部商品"
@@ -1082,7 +1217,61 @@
         "videoLink": "Video link",
         "openVideo": "Open video",
         "noMedia": "No extra images or video yet.",
-        "adminLogin": "Admin Login"
+        "adminLogin": "Admin Login",
+        "purchaseTabMethod": "How to buy",
+        "purchaseTabContact": "Contact platforms",
+        "contactLinkFallback": "Contact method",
+        "copyInquiryList": "Copy inquiry list",
+        "copyInquiryIntro": "Hello, I would like to ask about these products:",
+        "copyInquiryTotal": "Estimated total:",
+        "cartCopied": "Inquiry list copied. You can paste it to the admin.",
+        "cartCopyEmpty": "Your inquiry list is still empty.",
+        "cartAdded": "added to inquiry list.",
+        "openInquiryList": "View inquiry list",
+        "expectedExpiryDate": "Estimated expiry date",
+        "status_none": "No status label",
+        "status_new": "New",
+        "status_popular": "Popular",
+        "status_bestSeller": "Best seller",
+        "status_preorder": "Preorder",
+        "status_limited": "Limited",
+        "status_sale": "Sale",
+        "status_soldout": "Sold out",
+        "status_custom": "Custom label",
+        "categoryBrowseKicker": "SHOP CATEGORY",
+        "categoryBrowseTitle": "Shop by category",
+        "categoryBrowseHint": "Choose a category and the products update instantly.",
+        "categoryTileHint": "View this category",
+        "showMoreCategories": "Show more categories",
+        "collapseCategories": "Collapse categories",
+        "categoryMoreHint": "Extra categories collapse automatically",
+        "openMenu": "Open menu",
+        "mainNav": "Main menu",
+        "productVisual": "Product visual",
+        "productVisualAlt": "Ita bag and accessory collection",
+        "productBreadcrumb": "Home / Products",
+        "purchaseBreadcrumb": "Purchase / Contact",
+        "productCategories": "Product categories",
+        "servicePromise": "Service promise",
+        "searchDialog": "Search drawer",
+        "closeSearch": "Close search",
+        "closeCart": "Close inquiry list",
+        "closeContact": "Close contact window",
+        "closeProductDetail": "Close product details",
+        "cartTotal": "Total",
+        "remove": "Remove",
+        "allProducts": "All products",
+        "linkFallback": "Link",
+        "backToTop": "Back to top",
+        "quantity": "Qty",
+        "increaseQuantity": "Increase quantity",
+        "decreaseQuantity": "Decrease quantity",
+        "siteHeader": "Site header",
+        "username": "Account",
+        "password": "Password",
+        "cancel": "Cancel",
+        "login": "Log in",
+        "adminPanel": "showmii admin panel"
       },
       "announcement": "New and popular showmii picks are arriving. Send a screenshot to ask about stock or preorders.",
       "brand": {
