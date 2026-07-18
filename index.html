@@ -16,7 +16,7 @@
     <div id="app" class="site-shell">
       <div class="announcement" data-bind="announcement"></div>
 
-      <header class="site-header" aria-label="網站頁首">
+      <header class="site-header" aria-label="網站頁首" data-i18n-aria-label="siteHeader">
         <div class="utility-bar">
           <button class="text-action" type="button" data-action="open-search" data-i18n="search">搜尋</button>
           <label class="language-control">
@@ -43,11 +43,11 @@
         </div>
 
         <div class="brand-row">
-          <button class="menu-toggle" type="button" data-action="toggle-menu" aria-expanded="false">
+          <button class="menu-toggle" type="button" data-action="toggle-menu" aria-expanded="false" aria-label="開啟選單" data-i18n-aria-label="openMenu">
             <span></span>
             <span></span>
             <span></span>
-            <span class="sr-only">開啟選單</span>
+            <span class="sr-only" data-i18n="openMenu">開啟選單</span>
           </button>
           <a class="brand-lockup" href="#home" data-action="home">
             <span class="brand-mark" data-bind="brand-mark">C</span>
@@ -56,7 +56,7 @@
               <small data-bind="brand-tagline">痛包選物工作室</small>
             </span>
           </a>
-          <nav class="main-nav" data-region="nav" aria-label="主選單"></nav>
+          <nav class="main-nav" data-region="nav" aria-label="主選單" data-i18n-aria-label="mainNav"></nav>
         </div>
       </header>
 
@@ -71,38 +71,38 @@
               <button class="secondary-button" type="button" data-action="open-search" data-i18n="searchProducts">搜尋商品</button>
             </div>
           </div>
-          <div class="hero-visual" aria-label="商品視覺">
-            <img src="assets/product-sprite.png" alt="痛包與周邊商品系列" />
+          <div class="hero-visual" aria-label="商品視覺" data-i18n-aria-label="productVisual">
+            <img src="assets/product-sprite.png" alt="痛包與周邊商品系列" data-i18n-alt="productVisualAlt" />
           </div>
         </section>
 
         <section class="collection" id="products" aria-labelledby="collection-title">
           <div class="collection-heading">
             <div>
-              <p class="breadcrumb">首頁 / 商品</p>
+              <p class="breadcrumb" data-i18n="productBreadcrumb">首頁 / 商品</p>
               <h2 id="collection-title" data-bind="collection-title"></h2>
               <p data-bind="collection-description"></p>
             </div>
             <div class="collection-tools">
               <label class="search-field">
-                <span class="sr-only">搜尋商品</span>
-                <input type="search" data-action="inline-search" placeholder="搜尋商品" />
+                <span class="sr-only" data-i18n="searchProducts">搜尋商品</span>
+                <input type="search" data-action="inline-search" placeholder="搜尋商品" data-i18n-placeholder="searchProducts" />
               </label>
               <label class="sort-field">
-                <span>排序</span>
+                <span data-i18n="sort">排序</span>
                 <select data-action="sort">
-                  <option value="manual">精選順序</option>
-                  <option value="newest">最新上架</option>
-                  <option value="price-asc">價格低到高</option>
-                  <option value="price-desc">價格高到低</option>
-                  <option value="name">名稱排序</option>
+                  <option value="manual" data-i18n="featured">精選順序</option>
+                  <option value="newest" data-i18n="newest">最新上架</option>
+                  <option value="price-asc" data-i18n="priceAsc">價格低到高</option>
+                  <option value="price-desc" data-i18n="priceDesc">價格高到低</option>
+                  <option value="name" data-i18n="alphabetical">名稱排序</option>
                 </select>
               </label>
             </div>
           </div>
 
           <div class="collection-layout">
-            <aside class="filters" aria-label="商品分類">
+            <aside class="filters" aria-label="商品分類" data-i18n-aria-label="productCategories">
               <div class="filters-head">
                 <p data-i18n="categoryBrowseKicker">SHOP CATEGORY</p>
                 <h3 data-i18n="categoryBrowseTitle">依分類逛商品</h3>
@@ -117,11 +117,11 @@
           </div>
         </section>
 
-        <section class="service-strip" data-region="badges" aria-label="服務承諾"></section>
+        <section class="service-strip" data-region="badges" aria-label="服務承諾" data-i18n-aria-label="servicePromise"></section>
 
         <section class="purchase-info" id="purchase-info" aria-labelledby="purchase-title">
           <div class="purchase-copy">
-            <p class="breadcrumb">購買 / 聯繫</p>
+            <p class="breadcrumb" data-i18n="purchaseBreadcrumb">購買 / 聯繫</p>
             <h2 id="purchase-title" data-bind="purchase-title"></h2>
             <p data-bind="purchase-intro"></p>
           </div>
@@ -138,26 +138,26 @@
       </footer>
     </div>
 
-    <dialog class="drawer" id="searchDrawer" aria-label="搜尋視窗">
+    <dialog class="drawer" id="searchDrawer" aria-label="搜尋視窗" data-i18n-aria-label="searchDialog">
       <form method="dialog" class="drawer-head">
         <h2 data-i18n="search">搜尋</h2>
-        <button class="icon-button" type="submit" aria-label="關閉搜尋">×</button>
+        <button class="icon-button" type="submit" aria-label="關閉搜尋" data-i18n-aria-label="closeSearch">×</button>
       </form>
       <label class="drawer-search">
-        <span class="sr-only">搜尋商品</span>
-        <input type="search" data-action="drawer-search" placeholder="搜尋商品" />
+        <span class="sr-only" data-i18n="searchProducts">搜尋商品</span>
+        <input type="search" data-action="drawer-search" placeholder="搜尋商品" data-i18n-placeholder="searchProducts" />
       </label>
       <div class="drawer-results" data-region="search-results"></div>
     </dialog>
 
-    <dialog class="drawer" id="cartDrawer" aria-label="詢問清單">
+    <dialog class="drawer" id="cartDrawer" aria-label="詢問清單" data-i18n-aria-label="cart">
       <form method="dialog" class="drawer-head">
         <h2 data-i18n="cart">詢問清單</h2>
-        <button class="icon-button" type="submit" aria-label="關閉詢問清單">×</button>
+        <button class="icon-button" type="submit" aria-label="關閉詢問清單" data-i18n-aria-label="closeCart">×</button>
       </form>
       <div class="cart-items" data-region="cart-items"></div>
       <div class="cart-total">
-        <span>合計</span>
+        <span data-i18n="cartTotal">合計</span>
         <strong data-bind="cart-total">NT$0</strong>
       </div>
       <button class="secondary-button full-width" type="button" data-action="copy-cart" data-i18n="copyInquiryList">複製詢問清單</button>
@@ -166,43 +166,47 @@
     </dialog>
 
 
-    <dialog class="drawer" id="contactDrawer" aria-label="聯繫購買">
+    <dialog class="drawer" id="contactDrawer" aria-label="聯繫購買" data-i18n-aria-label="contactAdmin">
       <form method="dialog" class="drawer-head">
         <h2 data-i18n="contactAdmin">聯繫購買</h2>
-        <button class="icon-button" type="submit" aria-label="關閉聯繫視窗">×</button>
+        <button class="icon-button" type="submit" aria-label="關閉聯繫視窗" data-i18n-aria-label="closeContact">×</button>
       </form>
       <div class="contact-intro">
         <strong data-region="contact-product"></strong>
-        <p data-region="contact-intro">選擇你習慣的平台，把商品名稱或截圖傳給 showmii。</p>
+        <p data-region="contact-intro" data-i18n="contactIntro">選擇你習慣的平台，把商品名稱或截圖傳給 showmii。</p>
         <div class="purchase-method" data-region="purchase-method"></div>
       </div>
       <div class="contact-options" data-region="contact-options"></div>
     </dialog>
-    <dialog class="quick-view" id="quickView" aria-label="商品詳情"></dialog>
+    <dialog class="quick-view" id="quickView" aria-label="商品詳情" data-i18n-aria-label="productDetails"></dialog>
 
-    <dialog class="admin-gate" id="adminGate" aria-label="管理員登入">
+    <dialog class="admin-gate" id="adminGate" aria-label="管理員登入" data-i18n-aria-label="adminLogin">
       <form method="dialog" class="admin-card" data-form="admin-login">
-        <h2>管理員登入</h2>
+        <h2 data-i18n="adminLogin">管理員登入</h2>
         <label>
-          <span>帳號</span>
+          <span data-i18n="username">帳號</span>
           <input type="text" name="username" autocomplete="username" required />
         </label>
         <label>
-          <span>密碼</span>
+          <span data-i18n="password">密碼</span>
           <input type="password" name="passcode" autocomplete="current-password" required />
         </label>
         <div class="admin-actions">
-          <button class="secondary-button" type="button" data-action="close-dialog">取消</button>
-          <button class="primary-button" value="default" type="submit">登入</button>
+          <button class="secondary-button" type="button" data-action="close-dialog" data-i18n="cancel">取消</button>
+          <button class="primary-button" value="default" type="submit" data-i18n="login">登入</button>
         </div>
       </form>
     </dialog>
 
-    <aside class="admin-panel" data-region="admin-panel" aria-label="showmii 管理頁" hidden></aside>
+    <aside class="admin-panel" data-region="admin-panel" aria-label="showmii 管理頁" data-i18n-aria-label="adminPanel" hidden></aside>
+    <button class="back-to-top" type="button" data-action="back-top" aria-label="回到最上方" data-i18n-aria-label="backToTop">
+      <span aria-hidden="true">↑</span>
+      <span data-i18n="backToTop">回頂部</span>
+    </button>
     <div class="toast" data-region="toast" aria-live="polite"></div>
 
-    <script charset="utf-8" src="assets/default-data.js"></script>
-    <script charset="utf-8" src="assets/app.js"></script>
+    <script charset="utf-8" src="assets/default-data.js?v=20260718-datafix"></script>
+    <script charset="utf-8" src="assets/app.js?v=20260718-datafix"></script>
   </body>
 </html>
 
