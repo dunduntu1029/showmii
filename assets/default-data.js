@@ -1,4 +1,4 @@
-window.CAILUCKY_DEFAULT_SITE = {
+window.SHOWMII_DEFAULT_SITE = {
   "schemaVersion": 3,
   "admin": {
     "username": "showmii",
@@ -38,7 +38,7 @@ window.CAILUCKY_DEFAULT_SITE = {
   },
   "announcement": "showmii 新品與熱門款陸續上架，歡迎截圖商品詢問現貨與預訂。",
   "hero": {
-    "eyebrow": "showmii selection",
+    "eyebrow": "showmii 精選",
     "title": "把喜歡的收藏，好好展示出來",
     "subtitle": "從透明展示包、收納配件到日常可愛小物，替你的收藏搭配乾淨、漂亮、好拍照的出門樣子。",
     "cta": "逛全部商品"
@@ -590,13 +590,40 @@ window.CAILUCKY_DEFAULT_SITE = {
         "status_sale": "折扣",
         "status_soldout": "售完",
         "status_custom": "自訂標籤",
-        "categoryBrowseKicker": "SHOP CATEGORY",
+        "categoryBrowseKicker": "商品分類",
         "categoryBrowseTitle": "依分類逛商品",
         "categoryBrowseHint": "選一個分類，商品會立即更新。",
         "categoryTileHint": "查看這個分類",
         "showMoreCategories": "展開更多分類",
         "collapseCategories": "收合分類",
-        "categoryMoreHint": "分類過多時會自動收合"
+        "categoryMoreHint": "分類過多時會自動收合",
+        "openMenu": "開啟選單",
+        "mainNav": "主選單",
+        "productVisual": "商品視覺",
+        "productVisualAlt": "痛包與周邊商品系列",
+        "productBreadcrumb": "首頁 / 商品",
+        "purchaseBreadcrumb": "購買 / 聯繫",
+        "productCategories": "商品分類",
+        "servicePromise": "服務承諾",
+        "searchDialog": "搜尋視窗",
+        "closeSearch": "關閉搜尋",
+        "closeCart": "關閉詢問清單",
+        "closeContact": "關閉聯繫視窗",
+        "closeProductDetail": "關閉商品詳情",
+        "cartTotal": "合計",
+        "remove": "移除",
+        "allProducts": "全部商品",
+        "linkFallback": "連結",
+        "backToTop": "回頂部",
+        "quantity": "數量",
+        "increaseQuantity": "增加數量",
+        "decreaseQuantity": "減少數量",
+        "siteHeader": "網站頁首",
+        "username": "帳號",
+        "password": "密碼",
+        "cancel": "取消",
+        "login": "登入",
+        "adminPanel": "showmii 管理頁"
       },
       "announcement": "showmii 新品與熱門款陸續上架，歡迎截圖商品詢問現貨與預訂。",
       "brand": {
@@ -604,7 +631,7 @@ window.CAILUCKY_DEFAULT_SITE = {
         "tagline": "展示包與日常小物選品"
       },
       "hero": {
-        "eyebrow": "showmii selection",
+        "eyebrow": "showmii 精選",
         "title": "把喜歡的收藏，好好展示出來",
         "subtitle": "從透明展示包、收納配件到日常可愛小物，替你的收藏搭配乾淨、漂亮、好拍照的出門樣子。",
         "cta": "逛全部商品"
@@ -887,13 +914,40 @@ window.CAILUCKY_DEFAULT_SITE = {
         "status_sale": "折扣",
         "status_soldout": "售完",
         "status_custom": "自定义标签",
-        "categoryBrowseKicker": "SHOP CATEGORY",
+        "categoryBrowseKicker": "商品分类",
         "categoryBrowseTitle": "按分类逛商品",
         "categoryBrowseHint": "选择一个分类，商品会立即更新。",
         "categoryTileHint": "查看这个分类",
         "showMoreCategories": "展开更多分类",
         "collapseCategories": "收合分类",
-        "categoryMoreHint": "分类过多时会自动收合"
+        "categoryMoreHint": "分类过多时会自动收合",
+        "openMenu": "打开菜单",
+        "mainNav": "主菜单",
+        "productVisual": "商品视觉",
+        "productVisualAlt": "痛包与周边商品系列",
+        "productBreadcrumb": "首页 / 商品",
+        "purchaseBreadcrumb": "购买 / 联系",
+        "productCategories": "商品分类",
+        "servicePromise": "服务承诺",
+        "searchDialog": "搜索视窗",
+        "closeSearch": "关闭搜索",
+        "closeCart": "关闭询问清单",
+        "closeContact": "关闭联系视窗",
+        "closeProductDetail": "关闭商品详情",
+        "cartTotal": "合计",
+        "remove": "移除",
+        "allProducts": "全部商品",
+        "linkFallback": "链接",
+        "backToTop": "回顶部",
+        "quantity": "数量",
+        "increaseQuantity": "增加数量",
+        "decreaseQuantity": "减少数量",
+        "siteHeader": "网站页首",
+        "username": "账号",
+        "password": "密码",
+        "cancel": "取消",
+        "login": "登录",
+        "adminPanel": "showmii 管理页"
       },
       "announcement": "showmii 新品与热门款陆续上架，欢迎截图商品询问现货与预订。",
       "brand": {
@@ -901,7 +955,7 @@ window.CAILUCKY_DEFAULT_SITE = {
         "tagline": "展示包与日常小物选品"
       },
       "hero": {
-        "eyebrow": "showmii selection",
+        "eyebrow": "showmii 精选",
         "title": "把喜欢的收藏，好好展示出来",
         "subtitle": "从透明展示包、收纳配件到日常可爱小物，替你的收藏搭配干净、漂亮、好拍照的出门样子。",
         "cta": "逛全部商品"
@@ -1190,7 +1244,34 @@ window.CAILUCKY_DEFAULT_SITE = {
         "categoryTileHint": "View this category",
         "showMoreCategories": "Show more categories",
         "collapseCategories": "Collapse categories",
-        "categoryMoreHint": "Extra categories collapse automatically"
+        "categoryMoreHint": "Extra categories collapse automatically",
+        "openMenu": "Open menu",
+        "mainNav": "Main menu",
+        "productVisual": "Product visual",
+        "productVisualAlt": "Ita bag and accessory collection",
+        "productBreadcrumb": "Home / Products",
+        "purchaseBreadcrumb": "Purchase / Contact",
+        "productCategories": "Product categories",
+        "servicePromise": "Service promise",
+        "searchDialog": "Search drawer",
+        "closeSearch": "Close search",
+        "closeCart": "Close inquiry list",
+        "closeContact": "Close contact window",
+        "closeProductDetail": "Close product details",
+        "cartTotal": "Total",
+        "remove": "Remove",
+        "allProducts": "All products",
+        "linkFallback": "Link",
+        "backToTop": "Back to top",
+        "quantity": "Qty",
+        "increaseQuantity": "Increase quantity",
+        "decreaseQuantity": "Decrease quantity",
+        "siteHeader": "Site header",
+        "username": "Account",
+        "password": "Password",
+        "cancel": "Cancel",
+        "login": "Log in",
+        "adminPanel": "showmii admin panel"
       },
       "announcement": "New and popular showmii picks are arriving. Send a screenshot to ask about stock or preorders.",
       "brand": {
@@ -1429,3 +1510,4 @@ window.CAILUCKY_DEFAULT_SITE = {
     "note": "實際付款、寄送與預訂細節會依商品狀態與當期活動回覆。"
   }
 };
+window.CAILUCKY_DEFAULT_SITE = window.SHOWMII_DEFAULT_SITE;

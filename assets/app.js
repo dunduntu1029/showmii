@@ -1,8 +1,8 @@
-(() => {
+﻿(() => {
   "use strict";
 
   const LIVE_DATA_URL = "data/default-site-export.json";
-  const DEFAULT_SITE = window.CAILUCKY_DEFAULT_SITE;
+  const DEFAULT_SITE = window.SHOWMII_DEFAULT_SITE || window.CAILUCKY_DEFAULT_SITE || {};
   const SITE_KEY = "showmii_static_shop_site_v3";
   const CART_KEY = "showmii_static_shop_contact_cart_v3";
   const ADMIN_KEY = "showmii_static_shop_admin_session_v3";
@@ -283,14 +283,23 @@
   }
 
   function renderI18nLabels() {
+    document.documentElement.lang = currentLanguage();
     $$(`[data-i18n]`).forEach((node) => {
       node.textContent = ui(node.dataset.i18n);
+    });
+    $$(`[data-i18n-placeholder]`).forEach((node) => {
+      node.placeholder = ui(node.dataset.i18nPlaceholder);
+    });
+    $$(`[data-i18n-aria-label]`).forEach((node) => {
+      node.setAttribute("aria-label", ui(node.dataset.i18nAriaLabel));
+    });
+    $$(`[data-i18n-alt]`).forEach((node) => {
+      node.setAttribute("alt", ui(node.dataset.i18nAlt));
     });
     $$(`[data-action="inline-search"], [data-action="drawer-search"]`).forEach((node) => {
       node.placeholder = ui("searchProducts");
     });
-    const filterTitle = $(".filters h3");
-    if (filterTitle) filterTitle.textContent = ui("categories");
+    
     const sortLabel = $(".sort-field span");
     if (sortLabel) sortLabel.textContent = ui("sort");
     const optionLabels = {
@@ -336,6 +345,7 @@
     renderPurchaseInfo();
     renderCartCount();
     renderSearchResults();
+    syncBackTopVisibility();
     if (state.adminOpen) renderAdmin();
   }
 
@@ -371,7 +381,7 @@
       const view = localizedNav(item, index);
       const link = document.createElement("a");
       link.href = item.target || "#products";
-      link.textContent = view.label || "連結";
+      link.textContent = view.label || ui("linkFallback");
       link.dataset.action = "nav";
       if (item.category) link.dataset.category = item.category;
       if (item.category === state.category) link.classList.add("is-active");
@@ -445,7 +455,7 @@
       const category = getCategories().find((item) => item.id === state.category);
       const categoryView = category ? localizedCategory(category) : null;
       resultLine.textContent = `${products.length} ${ui("resultUnit")} ${
-        categoryView?.name || tx("layout.collectionTitle", "全部商品")
+        categoryView?.name || tx("layout.collectionTitle", ui("allProducts"))
       }`;
     }
 
@@ -491,6 +501,8 @@
       price.innerHTML = `<strong>${formatPrice(product.price)}</strong>${
         product.compareAt ? `<del>${formatPrice(product.compareAt)}</del>` : ""
       }`;
+      const quantity = document.createElement("div");
+      quantity.innerHTML = productQuantityMarkup(product, true);
       const actions = document.createElement("div");
       actions.className = "card-actions";
       actions.innerHTML = `
@@ -506,7 +518,7 @@
         expiry.textContent = expiryText;
         info.append(expiry);
       }
-      info.append(actions);
+      info.append(quantity, actions);
       card.append(image, info);
       region.append(card);
     });
@@ -533,7 +545,7 @@
       const view = localizedFooterLink(link, index);
       const anchor = document.createElement("a");
       anchor.href = safeUrl(link.target) || "#products";
-      anchor.textContent = view.label || "連結";
+      anchor.textContent = view.label || ui("linkFallback");
       region.append(anchor);
     });
   }
@@ -679,6 +691,41 @@
     return moneyCode(product?.priceCurrency || site.layout.currency || "TWD");
   }
 
+  function productQuantityMarkup(product, compact = false) {
+    const max = product.stock > 0 ? Math.min(Number(product.stock) || 99, 99) : 99;
+    return `
+      <div class="quantity-picker ${compact ? "is-compact" : ""}" data-qty-scope="${escapeHtml(product.id)}">
+        <span>${escapeHtml(ui("quantity"))}</span>
+        <div class="quantity-stepper">
+          <button type="button" data-action="qty-dec" data-product="${escapeHtml(product.id)}" aria-label="${escapeHtml(ui("decreaseQuantity"))}">-</button>
+          <input type="number" inputmode="numeric" min="1" max="${max}" value="1" data-qty-product="${escapeHtml(product.id)}" aria-label="${escapeHtml(ui("quantity"))}" />
+          <button type="button" data-action="qty-inc" data-product="${escapeHtml(product.id)}" aria-label="${escapeHtml(ui("increaseQuantity"))}">+</button>
+        </div>
+      </div>
+    `;
+  }
+
+  function quantityInput(productId, root = document) {
+    return $$(`[data-qty-product]`, root).find((node) => node.dataset.qtyProduct === productId);
+  }
+
+  function selectedQuantity(productId, trigger = null) {
+    const root = trigger?.closest?.(".product-card, .quick-content, dialog") || document;
+    const input = quantityInput(productId, root) || quantityInput(productId);
+    const max = Number(input?.max || 99) || 99;
+    const value = clampInt(input?.value || 1, 1, max);
+    if (input) input.value = value;
+    return value;
+  }
+
+  function adjustProductQuantity(productId, delta, trigger = null) {
+    const root = trigger?.closest?.(".product-card, .quick-content, dialog") || document;
+    const input = quantityInput(productId, root) || quantityInput(productId);
+    if (!input) return;
+    const max = Number(input.max || 99) || 99;
+    input.value = clampInt(Number(input.value || 1) + delta, 1, max);
+  }
+
   function productCurrencyAmount(product, field) {
     return roundMoney(currencyFromBase(product?.[field] || 0, productInputCurrency(product)));
   }
@@ -721,14 +768,15 @@
     return date ? `${ui("expectedExpiryDate")}: ${date}` : "";
   }
 
-  function addToCart(id) {
+  function addToCart(id, qty = 1) {
     const product = findProduct(id);
     if (!product) return;
+    const amount = clampInt(qty, 1, 99);
     const existing = cart.find((item) => item.id === id);
-    if (existing) existing.qty += 1;
-    else cart.push({ id, qty: 1 });
+    if (existing) existing.qty += amount;
+    else cart.push({ id, qty: amount });
     persistCart();
-    toast(`${localizedProduct(product).name} ${ui("cartAdded")}`);
+    toast(`${localizedProduct(product).name} x ${amount} ${ui("cartAdded")}`);
   }
 
   function changeCart(id, delta) {
@@ -814,12 +862,13 @@
             <button class="quantity-button" type="button" data-action="cart-dec" data-product="${escapeHtml(
               product.id
             )}">−</button>
+            <input class="cart-qty-input" type="number" inputmode="numeric" min="1" max="99" value="${entry.qty}" data-action="cart-qty" data-product="${escapeHtml(product.id)}" aria-label="${escapeHtml(ui("quantity"))}" />
             <button class="quantity-button" type="button" data-action="cart-inc" data-product="${escapeHtml(
               product.id
             )}">+</button>
             <button class="admin-small" type="button" data-action="cart-remove" data-product="${escapeHtml(
               product.id
-            )}">移除</button>
+            )}">${escapeHtml(ui("remove"))}</button>
           </div>
         `;
         item.append(thumb, copy);
@@ -989,7 +1038,7 @@
     copy.innerHTML = `
       <form method="dialog" class="drawer-head">
         <h2>${escapeHtml(view.name)}</h2>
-        <button class="icon-button" type="submit" aria-label="關閉商品詳情">×</button>
+        <button class="icon-button" type="submit" aria-label="${escapeHtml(ui("closeProductDetail"))}">×</button>
       </form>
       <div class="price-row">
         <strong>${formatPrice(product.price)}</strong>
@@ -1005,6 +1054,7 @@
         <h3>${escapeHtml(tx("purchase.title", site.purchase?.title || ui("purchaseTabMethod")))}</h3>
         <p>${escapeHtml(tx("purchase.method", site.purchase?.method || ""))}</p>
       </section>
+      ${productQuantityMarkup(product)}
       <div class="quick-actions">
         <button class="primary-button" type="button" data-action="add-cart" data-product="${escapeHtml(product.id)}">${escapeHtml(ui("addToCart"))}</button>
         <button class="secondary-button" type="button" data-action="open-cart">${escapeHtml(ui("openInquiryList"))}</button>
@@ -1853,6 +1903,11 @@
     window.setTimeout(() => item.remove(), 2600);
   }
 
+  function syncBackTopVisibility() {
+    const button = $(".back-to-top");
+    if (button) button.classList.toggle("is-visible", window.scrollY > 520);
+  }
+
   function maybeOpenAdminFromUrl() {
     const params = new URLSearchParams(window.location.search);
     if (["#admin", "#manage", "#management"].includes(window.location.hash) || params.get("admin") === "1") {
@@ -1866,6 +1921,7 @@
     const action = target.dataset.action;
     const productId = target.dataset.product;
 
+    if (action === "back-top") window.scrollTo({ top: 0, behavior: "smooth" });
     if (action === "open-search") openDialog("searchDrawer");
     if (action === "open-cart") openDialog("cartDrawer");
     if (action === "open-contact") openContact();
@@ -1902,7 +1958,9 @@
       }
     }
     if (action === "contact-product") openContact(productId);
-    if (action === "add-cart") addToCart(productId);
+    if (action === "qty-inc") adjustProductQuantity(productId, 1, target);
+    if (action === "qty-dec") adjustProductQuantity(productId, -1, target);
+    if (action === "add-cart") addToCart(productId, selectedQuantity(productId, target));
     if (action === "cart-inc") changeCart(productId, 1);
     if (action === "cart-dec") changeCart(productId, -1);
     if (action === "cart-remove") {
@@ -1965,7 +2023,7 @@
       if (moved) persistSite("商品排序已更新。");
     }
     if (action === "json-export") downloadJson("default-site-export.json", site);
-    if (action === "json-export-js") downloadText("default-data.js", `window.CAILUCKY_DEFAULT_SITE = ${JSON.stringify(site, null, 2)};` + "\n", "text/javascript");
+    if (action === "json-export-js") downloadText("default-data.js", `window.SHOWMII_DEFAULT_SITE = ${JSON.stringify(site, null, 2)};\nwindow.CAILUCKY_DEFAULT_SITE = window.SHOWMII_DEFAULT_SITE;` + "\n", "text/javascript");
     if (action === "download-backup") {
       const backup = localStorage.getItem(BACKUP_KEY);
       downloadJson(`cailucky-first-backup-${dateStamp()}.json`, backup ? JSON.parse(backup) : DEFAULT_SITE);
@@ -2006,6 +2064,18 @@
 
   document.addEventListener("change", (event) => {
     const target = event.target;
+    if (target.matches('[data-action="cart-qty"]')) {
+      const productId = target.dataset.product;
+      const item = cart.find((entry) => entry.id === productId);
+      if (item) {
+        item.qty = clampInt(target.value, 1, 99);
+        target.value = item.qty;
+        persistCart();
+      }
+    }
+    if (target.matches("[data-qty-product]")) {
+      selectedQuantity(target.dataset.qtyProduct, target);
+    }
     if (target.matches('[data-action="sort"]')) {
       state.sort = target.value;
       renderProducts();
@@ -2055,7 +2125,9 @@
 
   window.addEventListener("resize", () => {
     renderCategories();
+    syncBackTopVisibility();
   });
+  window.addEventListener("scroll", syncBackTopVisibility, { passive: true });
 
   document.addEventListener("submit", (event) => {
     const form = event.target;

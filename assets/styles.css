@@ -1,4 +1,4 @@
-:root {
+﻿:root {
   --bg: #fbfaf8;
   --surface: #ffffff;
   --text: #25211f;
@@ -2761,3 +2761,136 @@ html[data-backdrop-mode="image"] body {
   }
 }
 
+/* showmii language, quantity and back-top v5 */
+.quantity-picker {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.quantity-stepper {
+  display: grid;
+  grid-template-columns: 30px 42px 30px;
+  align-items: center;
+  overflow: hidden;
+  border: 1px solid rgba(34, 29, 32, 0.1);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.quantity-stepper button,
+.quantity-stepper input {
+  width: 100%;
+  min-width: 0;
+  height: 30px;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  text-align: center;
+  font-weight: 900;
+}
+
+.quantity-stepper button {
+  cursor: pointer;
+  color: var(--primary);
+}
+
+.quantity-stepper input::-webkit-outer-spin-button,
+.quantity-stepper input::-webkit-inner-spin-button {
+  margin: 0;
+  appearance: none;
+}
+
+.quantity-stepper input {
+  appearance: textfield;
+  border-inline: 1px solid rgba(34, 29, 32, 0.08);
+}
+
+.quick-copy > .quantity-picker {
+  max-width: 260px;
+  margin: 12px 0 0;
+}
+
+.back-to-top {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 70;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 42px;
+  border: 1px solid rgba(201, 65, 115, 0.22);
+  border-radius: 999px;
+  padding: 9px 13px;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--text);
+  box-shadow: 0 16px 36px rgba(84, 42, 62, 0.14);
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 900;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(10px);
+  transition: opacity 160ms ease, transform 160ms ease;
+}
+
+.back-to-top.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.back-to-top span:first-child {
+  width: 22px;
+  height: 22px;
+  display: inline-grid;
+  place-items: center;
+  border-radius: 999px;
+  background: var(--text);
+  color: white;
+}
+
+@media (max-width: 760px) {
+  .quantity-picker {
+    display: grid;
+    gap: 6px;
+  }
+
+  .quantity-stepper {
+    grid-template-columns: 32px 1fr 32px;
+  }
+
+  .back-to-top {
+    right: 12px;
+    bottom: 12px;
+  }
+}
+
+
+.cart-line-actions {
+  flex-wrap: wrap;
+}
+
+.cart-qty-input {
+  width: 58px;
+  height: 28px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 800;
+  text-align: center;
+}
+
+.cart-qty-input:focus {
+  outline: 2px solid color-mix(in srgb, var(--primary), transparent 70%);
+  outline-offset: 1px;
+}
