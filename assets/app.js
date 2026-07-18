@@ -1,4 +1,4 @@
-﻿(() => {
+(() => {
   "use strict";
 
   const LIVE_DATA_URL = "data/default-site-export.json";
