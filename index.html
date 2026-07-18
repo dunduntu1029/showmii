@@ -36,8 +36,9 @@
             </select>
           </label>
           <button class="text-action" type="button" data-action="account" data-i18n="account">管理員登入</button>
-          <button class="cart-link" type="button" data-action="open-contact">
-            <span data-i18n="contactAdmin">聯繫購買</span>
+                    <button class="cart-link" type="button" data-action="open-cart">
+            <span data-i18n="cart">詢問清單</span>
+            <span class="cart-count" data-bind="cart-count">0</span>
           </button>
         </div>
 
@@ -101,8 +102,12 @@
           </div>
 
           <div class="collection-layout">
-            <aside class="filters" aria-label="商品篩選">
-              <h3>分類</h3>
+            <aside class="filters" aria-label="商品分類">
+              <div class="filters-head">
+                <p data-i18n="categoryBrowseKicker">SHOP CATEGORY</p>
+                <h3 data-i18n="categoryBrowseTitle">依分類逛商品</h3>
+                <span data-i18n="categoryBrowseHint">選一個分類，商品會立即更新。</span>
+              </div>
               <div class="filter-list" data-region="categories"></div>
             </aside>
             <div class="product-area">
@@ -148,13 +153,15 @@
     <dialog class="drawer" id="cartDrawer" aria-label="詢問清單">
       <form method="dialog" class="drawer-head">
         <h2 data-i18n="cart">詢問清單</h2>
-        <button class="icon-button" type="submit" aria-label="Close cart">×</button>
+        <button class="icon-button" type="submit" aria-label="關閉詢問清單">×</button>
       </form>
       <div class="cart-items" data-region="cart-items"></div>
       <div class="cart-total">
         <span>合計</span>
         <strong data-bind="cart-total">NT$0</strong>
       </div>
+      <button class="secondary-button full-width" type="button" data-action="copy-cart" data-i18n="copyInquiryList">複製詢問清單</button>
+
       <button class="primary-button full-width" type="button" data-action="checkout-contact" data-i18n="checkoutDemo">聯繫購買</button>
     </dialog>
 
@@ -162,7 +169,7 @@
     <dialog class="drawer" id="contactDrawer" aria-label="聯繫購買">
       <form method="dialog" class="drawer-head">
         <h2 data-i18n="contactAdmin">聯繫購買</h2>
-        <button class="icon-button" type="submit" aria-label="Close contact">×</button>
+        <button class="icon-button" type="submit" aria-label="關閉聯繫視窗">×</button>
       </form>
       <div class="contact-intro">
         <strong data-region="contact-product"></strong>
